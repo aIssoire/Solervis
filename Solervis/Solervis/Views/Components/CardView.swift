@@ -12,19 +12,17 @@ struct CardView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                AsyncImage(url: URL(string: userImageURL)) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.gray
+                if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(userImageURL)") {
+                    AsyncImageLoader(url: url)
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
                 }
-                .frame(width: 40, height: 40)
-                .clipShape(Circle())
                 
                 VStack(alignment: .leading) {
                     Text(userName)
                         .font(.headline)
                     HStack {
-                        Text("\(rating)")
+                        Text(String(format: "%.1f", rating))
                         Image(systemName: "star.fill")
                             .foregroundColor(.yellow)
                     }
@@ -38,13 +36,11 @@ struct CardView: View {
             }
             .padding(.bottom, 5)
             
-            AsyncImage(url: URL(string: imageURL)) { image in
-                image.resizable()
-            } placeholder: {
-                Color.gray
+            if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(imageURL)") {
+                AsyncImageLoader(url: url)
+                    .frame(height: 150)
+                    .cornerRadius(10)
             }
-            .frame(height: 150)
-            .cornerRadius(10)
             
             Text(title)
                 .font(.title3)
@@ -72,12 +68,12 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         CardView(
-            imageURL: "https://example.com/image.jpg",
+            imageURL: "File/6816-1718446755324.jpeg",
             title: "Cours d'anglais",
             location: "Colombes",
             price: 42,
             userName: "Issoire A.",
-            userImageURL: "https://example.com/user.jpg",
+            userImageURL: "File/521588-1716550427743.jpeg",
             rating: 5
         )
         .previewLayout(.sizeThatFits)

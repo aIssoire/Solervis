@@ -103,8 +103,19 @@ struct HomeView: View {
         let urlString = selectedSegment == "Offres" ? "https://solervis.fr/api/ads/connectedSupply/offer" : "https://solervis.fr/api/ads/connectedSupply/ask"
         guard let url = URL(string: urlString) else { return }
         
+        print("Fetching data from: \(urlString)") // Journal
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
+            if let error = error {
+                print("Error fetching data: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received")
+                return
+            }
+            
             do {
                 let cardData = try JSONDecoder().decode([CardData].self, from: data)
                 DispatchQueue.main.async {
@@ -113,12 +124,14 @@ struct HomeView: View {
                     } else {
                         requests = cardData
                     }
+                    print("Data received and decoded successfully")
                 }
             } catch {
                 print("Failed to decode JSON: \(error)")
             }
         }.resume()
     }
+
 }
 
 struct HomeView_Previews: PreviewProvider {
