@@ -6,6 +6,7 @@ struct HomeView: View {
     @State private var selectedSegment: String = "Offres"
     @State private var offers: [CardData] = []
     @State private var requests: [CardData] = []
+    @State private var ads: [CardData] = []
     
     let categories = ["Animation", "Bricolage", "Covoiturage", "Cours particuliers", "Déménagement", "Fitness", "Jardinage", "Livraison", "Ménage", "Photographie", "Plomberie", "Réparation", "Services Informatiques", "Traiteur", "Autres"]
     
@@ -20,6 +21,7 @@ struct HomeView: View {
                         ForEach(categories, id: \.self) { category in
                             CategoryButton(category: category, isSelected: category == selectedCategory) {
                                 selectedCategory = category
+                                loadData(forCategory: category)
                             }
                         }
                     }
@@ -27,70 +29,87 @@ struct HomeView: View {
                 }
                 .padding(.vertical, 10)
                 
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        selectedSegment = "Offres"
-                        loadData()
-                    }) {
-                        Text("OFFRES")
-                            .foregroundColor(selectedSegment == "Offres" ? .black : .gray)
-                            .fontWeight(selectedSegment == "Offres" ? .bold : .regular)
-                            .padding(.bottom, 5)
-                            .overlay(
-                                Rectangle()
-                                    .frame(height: 2)
-                                    .foregroundColor(selectedSegment == "Offres" ? .black : .clear),
-                                alignment: .bottom
-                            )
+                if selectedCategory == nil {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            selectedSegment = "Offres"
+                            loadData()
+                        }) {
+                            Text("OFFRES")
+                                .foregroundColor(selectedSegment == "Offres" ? .black : .gray)
+                                .fontWeight(selectedSegment == "Offres" ? .bold : .regular)
+                                .padding(.bottom, 5)
+                                .overlay(
+                                    Rectangle()
+                                        .frame(height: 2)
+                                        .foregroundColor(selectedSegment == "Offres" ? .black : .clear),
+                                    alignment: .bottom
+                                )
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            selectedSegment = "Demandes"
+                            loadData()
+                        }) {
+                            Text("DEMANDES")
+                                .foregroundColor(selectedSegment == "Demandes" ? .black : .gray)
+                                .fontWeight(selectedSegment == "Demandes" ? .bold : .regular)
+                                .padding(.bottom, 5)
+                                .overlay(
+                                    Rectangle()
+                                        .frame(height: 2)
+                                        .foregroundColor(selectedSegment == "Demandes" ? .black : .clear),
+                                    alignment: .bottom
+                                )
+                        }
+                        Spacer()
                     }
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        selectedSegment = "Demandes"
-                        loadData()
-                    }) {
-                        Text("DEMANDES")
-                            .foregroundColor(selectedSegment == "Demandes" ? .black : .gray)
-                            .fontWeight(selectedSegment == "Demandes" ? .bold : .regular)
-                            .padding(.bottom, 5)
-                            .overlay(
-                                Rectangle()
-                                    .frame(height: 2)
-                                    .foregroundColor(selectedSegment == "Demandes" ? .black : .clear),
-                                alignment: .bottom
-                            )
-                    }
-                    Spacer()
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
                 
                 ScrollView {
                     VStack(spacing: 0) { // Remove spacing to avoid lines between cards
-                        if selectedSegment == "Offres" {
-                            ForEach(offers) { offer in
-                                CardView(
-                                    imageURL: offer.imageURL,
-                                    title: offer.title,
-                                    location: offer.location,
-                                    price: offer.price,
-                                    userName: offer.userName,
-                                    userImageURL: offer.userImageURL,
-                                    rating: offer.rating
-                                )
-                                .padding(.vertical, 10) // Optional padding for better spacing
+                        if selectedCategory == nil {
+                            if selectedSegment == "Offres" {
+                                ForEach(offers) { offer in
+                                    CardView(
+                                        imageURL: offer.imageURL,
+                                        title: offer.title,
+                                        location: offer.location,
+                                        price: offer.price,
+                                        userName: offer.userName,
+                                        userImageURL: offer.userImageURL,
+                                        rating: offer.rating
+                                    )
+                                    .padding(.vertical, 10) // Optional padding for better spacing
+                                }
+                            } else {
+                                ForEach(requests) { request in
+                                    CardView(
+                                        imageURL: request.imageURL,
+                                        title: request.title,
+                                        location: request.location,
+                                        price: request.price,
+                                        userName: request.userName,
+                                        userImageURL: request.userImageURL,
+                                        rating: request.rating
+                                    )
+                                    .padding(.vertical, 10) // Optional padding for better spacing
+                                }
                             }
                         } else {
-                            ForEach(requests) { request in
+                            ForEach(ads) { ad in
                                 CardView(
-                                    imageURL: request.imageURL,
-                                    title: request.title,
-                                    location: request.location,
-                                    price: request.price,
-                                    userName: request.userName,
-                                    userImageURL: request.userImageURL,
-                                    rating: request.rating
+                                    imageURL: ad.imageURL,
+                                    title: ad.title,
+                                    location: ad.location,
+                                    price: ad.price,
+                                    userName: ad.userName,
+                                    userImageURL: ad.userImageURL,
+                                    rating: ad.rating
                                 )
                                 .padding(.vertical, 10) // Optional padding for better spacing
                             }
@@ -99,12 +118,19 @@ struct HomeView: View {
                     .padding(.horizontal)
                 }
             }
-            .onAppear(perform: loadData)
+            .onAppear {
+                loadData()
+            }
         }
     }
     
-    func loadData() {
-        let urlString = selectedSegment == "Offres" ? "https://solervis.fr/api/ads/connectedSupply/offer" : "https://solervis.fr/api/ads/connectedSupply/ask"
+    func loadData(forCategory category: String? = nil) {
+        var urlString: String
+        if let category = category {
+            urlString = "https://solervis.fr/api/ads/search/?query=\(category)"
+        } else {
+            urlString = selectedSegment == "Offres" ? "https://solervis.fr/api/ads/connectedSupply/offer" : "https://solervis.fr/api/ads/connectedSupply/ask"
+        }
         guard let url = URL(string: urlString) else { return }
         
         print("Fetching data from: \(urlString)") // Journal
@@ -123,10 +149,14 @@ struct HomeView: View {
             do {
                 let cardData = try JSONDecoder().decode([CardData].self, from: data)
                 DispatchQueue.main.async {
-                    if selectedSegment == "Offres" {
-                        offers = cardData
+                    if category == nil {
+                        if selectedSegment == "Offres" {
+                            offers = cardData
+                        } else {
+                            requests = cardData
+                        }
                     } else {
-                        requests = cardData
+                        ads = cardData
                     }
                     print("Data received and decoded successfully")
                 }
