@@ -24,6 +24,7 @@
 		511086902C391619002CF94D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110868F2C391619002CF94D /* SearchBar.swift */; };
 		511086922C3916CE002CF94D /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086912C3916CE002CF94D /* CustomSearchBar.swift */; };
 		511086942C391849002CF94D /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086932C391849002CF94D /* CategoryButton.swift */; };
+		511086962C391BAC002CF94D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086952C391BAC002CF94D /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		5110868F2C391619002CF94D /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		511086912C3916CE002CF94D /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		511086932C391849002CF94D /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
+		511086952C391BAC002CF94D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				5109B03B2C380D9A005460C0 /* Assets.xcassets */,
 				5109B03D2C380D9A005460C0 /* Preview Content */,
 				511086812C3910B6002CF94D /* HomeView.swift */,
+				511086952C391BAC002CF94D /* CardView.swift */,
 				511086912C3916CE002CF94D /* CustomSearchBar.swift */,
 				511086932C391849002CF94D /* CategoryButton.swift */,
 				5110868F2C391619002CF94D /* SearchBar.swift */,
@@ -294,6 +297,7 @@
 				511086822C3910B6002CF94D /* HomeView.swift in Sources */,
 				511086862C391105002CF94D /* MarketView.swift in Sources */,
 				511086842C3910E5002CF94D /* Task.swift in Sources */,
+				511086962C391BAC002CF94D /* CardView.swift in Sources */,
 				511086902C391619002CF94D /* SearchBar.swift in Sources */,
 				5109B03A2C380D99005460C0 /* Item.swift in Sources */,
 				511086942C391849002CF94D /* CategoryButton.swift in Sources */,

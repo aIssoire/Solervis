@@ -4,6 +4,8 @@ struct HomeView: View {
     @State private var searchText: String = ""
     @State private var selectedCategory: String?
     @State private var selectedSegment: String = "Offres"
+    @State private var offers: [CardData] = []
+    @State private var requests: [CardData] = []
     
     let categories = ["Animation", "Bricolage", "Covoiturage", "Cours particuliers", "Déménagement", "Fitness", "Jardinage", "Livraison", "Ménage", "Photographie", "Plomberie", "Réparation", "Services Informatiques", "Traiteur", "Autres"]
     
@@ -62,21 +64,51 @@ struct HomeView: View {
                 }
                 .padding(.horizontal)
                 
-                Spacer()
-                
-                // Contenu de la page d'accueil à afficher selon le segment sélectionné
-                if selectedSegment == "Offres" {
-                    Text("Affichage des offres")
-                    // Remplacez par le contenu des offres
-                } else {
-                    Text("Affichage des demandes")
-                    // Remplacez par le contenu des demandes
+                List {
+                    if selectedSegment == "Offres" {
+                        ForEach(offers) { offer in
+                            CardView(
+                                imageURL: offer.imageURL,
+                                title: offer.title,
+                                location: offer.location,
+                                price: offer.price,
+                                userName: offer.userName,
+                                userImageURL: offer.userImageURL,
+                                rating: offer.rating
+                            )
+                        }
+                    } else {
+                        ForEach(requests) { request in
+                            CardView(
+                                imageURL: request.imageURL,
+                                title: request.title,
+                                location: request.location,
+                                price: request.price,
+                                userName: request.userName,
+                                userImageURL: request.userImageURL,
+                                rating: request.rating
+                            )
+                        }
+                    }
                 }
-                
-                Spacer()
+                .listStyle(PlainListStyle())
             }
-            
+            .onAppear(perform: loadData)
         }
+    }
+    
+    func loadData() {
+        // Remplacez par votre appel API pour charger les données
+        // Exemple de données fictives
+        offers = [
+            CardData(imageURL: "https://example.com/image1.jpg", title: "Cours d'anglais", location: "Colombes", price: 42, userName: "Issoire A.", userImageURL: "https://example.com/user1.jpg", rating: 5),
+            CardData(imageURL: "https://example.com/image2.jpg", title: "Bricolage", location: "Paris", price: 30, userName: "Jean B.", userImageURL: "https://example.com/user2.jpg", rating: 4)
+        ]
+        
+        requests = [
+            CardData(imageURL: "https://example.com/image3.jpg", title: "Réparation de vélo", location: "Lyon", price: 20, userName: "Marie C.", userImageURL: "https://example.com/user3.jpg", rating: 5),
+            CardData(imageURL: "https://example.com/image4.jpg", title: "Cours de piano", location: "Marseille", price: 50, userName: "Paul D.", userImageURL: "https://example.com/user4.jpg", rating: 3)
+        ]
     }
 }
 
@@ -86,6 +118,13 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-// Exemple de données pour les offres et demandes
-let sampleOffers = ["Cours d'anglais", "Bricolage", "Jardinage"]
-let sampleRequests = ["Réparation de vélo", "Cours de piano", "Aide déménagement"]
+struct CardData: Identifiable {
+    var id = UUID()
+    var imageURL: String
+    var title: String
+    var location: String
+    var price: Int
+    var userName: String
+    var userImageURL: String
+    var rating: Int
+}
