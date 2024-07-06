@@ -3,6 +3,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var searchText: String = ""
     @State private var selectedCategory: String?
+    @State private var selectedSegment: String = "Offres"
     
     let categories = ["Animation", "Bricolage", "Covoiturage", "Cours particuliers", "Déménagement", "Fitness", "Jardinage", "Livraison", "Ménage", "Photographie", "Plomberie", "Réparation", "Services Informatiques", "Traiteur", "Autres"]
     
@@ -24,15 +25,57 @@ struct HomeView: View {
                 }
                 .padding(.vertical, 10)
                 
-                // Ajoute ici le contenu de la page d'accueil
-                List {
-                    // Exemple de contenu filtré par la recherche
-                    ForEach(sampleData.filter { searchText.isEmpty ? true : $0.lowercased().contains(searchText.lowercased()) }, id: \.self) { item in
-                        Text(item)
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        selectedSegment = "Offres"
+                    }) {
+                        Text("OFFRES")
+                            .foregroundColor(selectedSegment == "Offres" ? .black : .gray)
+                            .fontWeight(selectedSegment == "Offres" ? .bold : .regular)
+                            .padding(.bottom, 5)
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 2)
+                                    .foregroundColor(selectedSegment == "Offres" ? .black : .clear),
+                                alignment: .bottom
+                            )
                     }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        selectedSegment = "Demandes"
+                    }) {
+                        Text("DEMANDES")
+                            .foregroundColor(selectedSegment == "Demandes" ? .black : .gray)
+                            .fontWeight(selectedSegment == "Demandes" ? .bold : .regular)
+                            .padding(.bottom, 5)
+                            .overlay(
+                                Rectangle()
+                                    .frame(height: 2)
+                                    .foregroundColor(selectedSegment == "Demandes" ? .black : .clear),
+                                alignment: .bottom
+                            )
+                    }
+                    Spacer()
                 }
-                .navigationTitle("Accueil")
+                .padding(.horizontal)
+                
+                Spacer()
+                
+                // Contenu de la page d'accueil à afficher selon le segment sélectionné
+                if selectedSegment == "Offres" {
+                    Text("Affichage des offres")
+                    // Remplacez par le contenu des offres
+                } else {
+                    Text("Affichage des demandes")
+                    // Remplacez par le contenu des demandes
+                }
+                
+                Spacer()
             }
+            
         }
     }
 }
@@ -43,5 +86,6 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
-// Exemple de données pour la liste
-let sampleData = ["Task 1", "Task 2", "Task 3", "Task 4", "Task 5"]
+// Exemple de données pour les offres et demandes
+let sampleOffers = ["Cours d'anglais", "Bricolage", "Jardinage"]
+let sampleRequests = ["Réparation de vélo", "Cours de piano", "Aide déménagement"]
