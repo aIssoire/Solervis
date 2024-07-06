@@ -1,0 +1,633 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5109B0362C380D99005460C0 /* SolervisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109B0352C380D99005460C0 /* SolervisApp.swift */; };
+		5109B0382C380D99005460C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109B0372C380D99005460C0 /* ContentView.swift */; };
+		5109B03A2C380D99005460C0 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109B0392C380D99005460C0 /* Item.swift */; };
+		5109B03C2C380D9A005460C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5109B03B2C380D9A005460C0 /* Assets.xcassets */; };
+		5109B03F2C380D9A005460C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5109B03E2C380D9A005460C0 /* Preview Assets.xcassets */; };
+		5109B0492C380D9A005460C0 /* SolervisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109B0482C380D9A005460C0 /* SolervisTests.swift */; };
+		5109B0532C380D9A005460C0 /* SolervisUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109B0522C380D9A005460C0 /* SolervisUITests.swift */; };
+		5109B0552C380D9A005460C0 /* SolervisUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109B0542C380D9A005460C0 /* SolervisUITestsLaunchTests.swift */; };
+		511086822C3910B6002CF94D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086812C3910B6002CF94D /* HomeView.swift */; };
+		511086842C3910E5002CF94D /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086832C3910E5002CF94D /* Task.swift */; };
+		511086862C391105002CF94D /* MarketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086852C391105002CF94D /* MarketView.swift */; };
+		511086882C391117002CF94D /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086872C391117002CF94D /* AddView.swift */; };
+		5110868A2C391130002CF94D /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086892C391130002CF94D /* MessagesView.swift */; };
+		5110868C2C391146002CF94D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110868B2C391146002CF94D /* ProfileView.swift */; };
+		511086902C391619002CF94D /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110868F2C391619002CF94D /* SearchBar.swift */; };
+		511086922C3916CE002CF94D /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086912C3916CE002CF94D /* CustomSearchBar.swift */; };
+		511086942C391849002CF94D /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086932C391849002CF94D /* CategoryButton.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5109B0452C380D9A005460C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5109B02A2C380D99005460C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5109B0312C380D99005460C0;
+			remoteInfo = Solervis;
+		};
+		5109B04F2C380D9A005460C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5109B02A2C380D99005460C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5109B0312C380D99005460C0;
+			remoteInfo = Solervis;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5109B0322C380D99005460C0 /* Solervis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Solervis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5109B0352C380D99005460C0 /* SolervisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolervisApp.swift; sourceTree = "<group>"; };
+		5109B0372C380D99005460C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5109B0392C380D99005460C0 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		5109B03B2C380D9A005460C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5109B03E2C380D9A005460C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5109B0442C380D9A005460C0 /* SolervisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolervisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5109B0482C380D9A005460C0 /* SolervisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolervisTests.swift; sourceTree = "<group>"; };
+		5109B04E2C380D9A005460C0 /* SolervisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolervisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5109B0522C380D9A005460C0 /* SolervisUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolervisUITests.swift; sourceTree = "<group>"; };
+		5109B0542C380D9A005460C0 /* SolervisUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolervisUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		511086812C3910B6002CF94D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		511086832C3910E5002CF94D /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		511086852C391105002CF94D /* MarketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketView.swift; sourceTree = "<group>"; };
+		511086872C391117002CF94D /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		511086892C391130002CF94D /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
+		5110868B2C391146002CF94D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5110868F2C391619002CF94D /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		511086912C3916CE002CF94D /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
+		511086932C391849002CF94D /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5109B02F2C380D99005460C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5109B0412C380D9A005460C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5109B04B2C380D9A005460C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5109B0292C380D99005460C0 = {
+			isa = PBXGroup;
+			children = (
+				5109B0342C380D99005460C0 /* Solervis */,
+				5109B0472C380D9A005460C0 /* SolervisTests */,
+				5109B0512C380D9A005460C0 /* SolervisUITests */,
+				5109B0332C380D99005460C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5109B0332C380D99005460C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5109B0322C380D99005460C0 /* Solervis.app */,
+				5109B0442C380D9A005460C0 /* SolervisTests.xctest */,
+				5109B04E2C380D9A005460C0 /* SolervisUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5109B0342C380D99005460C0 /* Solervis */ = {
+			isa = PBXGroup;
+			children = (
+				5109B0352C380D99005460C0 /* SolervisApp.swift */,
+				5109B0372C380D99005460C0 /* ContentView.swift */,
+				5109B0392C380D99005460C0 /* Item.swift */,
+				5109B03B2C380D9A005460C0 /* Assets.xcassets */,
+				5109B03D2C380D9A005460C0 /* Preview Content */,
+				511086812C3910B6002CF94D /* HomeView.swift */,
+				511086912C3916CE002CF94D /* CustomSearchBar.swift */,
+				511086932C391849002CF94D /* CategoryButton.swift */,
+				5110868F2C391619002CF94D /* SearchBar.swift */,
+				511086852C391105002CF94D /* MarketView.swift */,
+				511086872C391117002CF94D /* AddView.swift */,
+				511086892C391130002CF94D /* MessagesView.swift */,
+				5110868B2C391146002CF94D /* ProfileView.swift */,
+				511086832C3910E5002CF94D /* Task.swift */,
+			);
+			path = Solervis;
+			sourceTree = "<group>";
+		};
+		5109B03D2C380D9A005460C0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				5109B03E2C380D9A005460C0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5109B0472C380D9A005460C0 /* SolervisTests */ = {
+			isa = PBXGroup;
+			children = (
+				5109B0482C380D9A005460C0 /* SolervisTests.swift */,
+			);
+			path = SolervisTests;
+			sourceTree = "<group>";
+		};
+		5109B0512C380D9A005460C0 /* SolervisUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5109B0522C380D9A005460C0 /* SolervisUITests.swift */,
+				5109B0542C380D9A005460C0 /* SolervisUITestsLaunchTests.swift */,
+			);
+			path = SolervisUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5109B0312C380D99005460C0 /* Solervis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5109B0582C380D9A005460C0 /* Build configuration list for PBXNativeTarget "Solervis" */;
+			buildPhases = (
+				5109B02E2C380D99005460C0 /* Sources */,
+				5109B02F2C380D99005460C0 /* Frameworks */,
+				5109B0302C380D99005460C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Solervis;
+			productName = Solervis;
+			productReference = 5109B0322C380D99005460C0 /* Solervis.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5109B0432C380D9A005460C0 /* SolervisTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5109B05B2C380D9A005460C0 /* Build configuration list for PBXNativeTarget "SolervisTests" */;
+			buildPhases = (
+				5109B0402C380D9A005460C0 /* Sources */,
+				5109B0412C380D9A005460C0 /* Frameworks */,
+				5109B0422C380D9A005460C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5109B0462C380D9A005460C0 /* PBXTargetDependency */,
+			);
+			name = SolervisTests;
+			productName = SolervisTests;
+			productReference = 5109B0442C380D9A005460C0 /* SolervisTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5109B04D2C380D9A005460C0 /* SolervisUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5109B05E2C380D9A005460C0 /* Build configuration list for PBXNativeTarget "SolervisUITests" */;
+			buildPhases = (
+				5109B04A2C380D9A005460C0 /* Sources */,
+				5109B04B2C380D9A005460C0 /* Frameworks */,
+				5109B04C2C380D9A005460C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5109B0502C380D9A005460C0 /* PBXTargetDependency */,
+			);
+			name = SolervisUITests;
+			productName = SolervisUITests;
+			productReference = 5109B04E2C380D9A005460C0 /* SolervisUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5109B02A2C380D99005460C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					5109B0312C380D99005460C0 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					5109B0432C380D9A005460C0 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 5109B0312C380D99005460C0;
+					};
+					5109B04D2C380D9A005460C0 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 5109B0312C380D99005460C0;
+					};
+				};
+			};
+			buildConfigurationList = 5109B02D2C380D99005460C0 /* Build configuration list for PBXProject "Solervis" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5109B0292C380D99005460C0;
+			productRefGroup = 5109B0332C380D99005460C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5109B0312C380D99005460C0 /* Solervis */,
+				5109B0432C380D9A005460C0 /* SolervisTests */,
+				5109B04D2C380D9A005460C0 /* SolervisUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5109B0302C380D99005460C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5109B03F2C380D9A005460C0 /* Preview Assets.xcassets in Resources */,
+				5109B03C2C380D9A005460C0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5109B0422C380D9A005460C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5109B04C2C380D9A005460C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5109B02E2C380D99005460C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5110868A2C391130002CF94D /* MessagesView.swift in Sources */,
+				5110868C2C391146002CF94D /* ProfileView.swift in Sources */,
+				511086882C391117002CF94D /* AddView.swift in Sources */,
+				5109B0382C380D99005460C0 /* ContentView.swift in Sources */,
+				511086822C3910B6002CF94D /* HomeView.swift in Sources */,
+				511086862C391105002CF94D /* MarketView.swift in Sources */,
+				511086842C3910E5002CF94D /* Task.swift in Sources */,
+				511086902C391619002CF94D /* SearchBar.swift in Sources */,
+				5109B03A2C380D99005460C0 /* Item.swift in Sources */,
+				511086942C391849002CF94D /* CategoryButton.swift in Sources */,
+				511086922C3916CE002CF94D /* CustomSearchBar.swift in Sources */,
+				5109B0362C380D99005460C0 /* SolervisApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5109B0402C380D9A005460C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5109B0492C380D9A005460C0 /* SolervisTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5109B04A2C380D9A005460C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5109B0552C380D9A005460C0 /* SolervisUITestsLaunchTests.swift in Sources */,
+				5109B0532C380D9A005460C0 /* SolervisUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5109B0462C380D9A005460C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5109B0312C380D99005460C0 /* Solervis */;
+			targetProxy = 5109B0452C380D9A005460C0 /* PBXContainerItemProxy */;
+		};
+		5109B0502C380D9A005460C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5109B0312C380D99005460C0 /* Solervis */;
+			targetProxy = 5109B04F2C380D9A005460C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5109B0562C380D9A005460C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5109B0572C380D9A005460C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5109B0592C380D9A005460C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Solervis/Preview Content\"";
+				DEVELOPMENT_TEAM = 96D6LQ3Y54;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.siit.Solervis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5109B05A2C380D9A005460C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Solervis/Preview Content\"";
+				DEVELOPMENT_TEAM = 96D6LQ3Y54;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.siit.Solervis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5109B05C2C380D9A005460C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 96D6LQ3Y54;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.siit.SolervisTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Solervis.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Solervis";
+			};
+			name = Debug;
+		};
+		5109B05D2C380D9A005460C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 96D6LQ3Y54;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.siit.SolervisTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Solervis.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Solervis";
+			};
+			name = Release;
+		};
+		5109B05F2C380D9A005460C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 96D6LQ3Y54;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.siit.SolervisUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Solervis;
+			};
+			name = Debug;
+		};
+		5109B0602C380D9A005460C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 96D6LQ3Y54;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.siit.SolervisUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Solervis;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5109B02D2C380D99005460C0 /* Build configuration list for PBXProject "Solervis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5109B0562C380D9A005460C0 /* Debug */,
+				5109B0572C380D9A005460C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5109B0582C380D9A005460C0 /* Build configuration list for PBXNativeTarget "Solervis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5109B0592C380D9A005460C0 /* Debug */,
+				5109B05A2C380D9A005460C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5109B05B2C380D9A005460C0 /* Build configuration list for PBXNativeTarget "SolervisTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5109B05C2C380D9A005460C0 /* Debug */,
+				5109B05D2C380D9A005460C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5109B05E2C380D9A005460C0 /* Build configuration list for PBXNativeTarget "SolervisUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5109B05F2C380D9A005460C0 /* Debug */,
+				5109B0602C380D9A005460C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5109B02A2C380D99005460C0 /* Project object */;
+}
