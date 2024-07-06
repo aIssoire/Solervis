@@ -31,6 +31,7 @@ struct HomeView: View {
                     Spacer()
                     Button(action: {
                         selectedSegment = "Offres"
+                        loadData()
                     }) {
                         Text("OFFRES")
                             .foregroundColor(selectedSegment == "Offres" ? .black : .gray)
@@ -48,6 +49,7 @@ struct HomeView: View {
                     
                     Button(action: {
                         selectedSegment = "Demandes"
+                        loadData()
                     }) {
                         Text("DEMANDES")
                             .foregroundColor(selectedSegment == "Demandes" ? .black : .gray)
@@ -98,17 +100,24 @@ struct HomeView: View {
     }
     
     func loadData() {
-        // Remplacez par votre appel API pour charger les données
-        // Exemple de données fictives
-        offers = [
-            CardData(imageURL: "https://example.com/image1.jpg", title: "Cours d'anglais", location: "Colombes", price: 42, userName: "Issoire A.", userImageURL: "https://example.com/user1.jpg", rating: 5),
-            CardData(imageURL: "https://example.com/image2.jpg", title: "Bricolage", location: "Paris", price: 30, userName: "Jean B.", userImageURL: "https://example.com/user2.jpg", rating: 4)
-        ]
+        let urlString = selectedSegment == "Offres" ? "https://solervis.fr/api/ads/connectedSupply/offer" : "https://solervis.fr/api/ads/connectedSupply/ask"
+        guard let url = URL(string: urlString) else { return }
         
-        requests = [
-            CardData(imageURL: "https://example.com/image3.jpg", title: "Réparation de vélo", location: "Lyon", price: 20, userName: "Marie C.", userImageURL: "https://example.com/user3.jpg", rating: 5),
-            CardData(imageURL: "https://example.com/image4.jpg", title: "Cours de piano", location: "Marseille", price: 50, userName: "Paul D.", userImageURL: "https://example.com/user4.jpg", rating: 3)
-        ]
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let cardData = try JSONDecoder().decode([CardData].self, from: data)
+                DispatchQueue.main.async {
+                    if selectedSegment == "Offres" {
+                        offers = cardData
+                    } else {
+                        requests = cardData
+                    }
+                }
+            } catch {
+                print("Failed to decode JSON: \(error)")
+            }
+        }.resume()
     }
 }
 
@@ -116,15 +125,4 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
-}
-
-struct CardData: Identifiable {
-    var id = UUID()
-    var imageURL: String
-    var title: String
-    var location: String
-    var price: Int
-    var userName: String
-    var userImageURL: String
-    var rating: Int
 }

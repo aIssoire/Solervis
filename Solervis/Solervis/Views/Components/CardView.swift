@@ -7,7 +7,7 @@ struct CardView: View {
     var price: Int
     var userName: String
     var userImageURL: String
-    var rating: Int
+    var rating: Double
     
     var body: some View {
         VStack(alignment: .leading) {

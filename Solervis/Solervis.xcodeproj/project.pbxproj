@@ -25,6 +25,7 @@
 		511086922C3916CE002CF94D /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086912C3916CE002CF94D /* CustomSearchBar.swift */; };
 		511086942C391849002CF94D /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086932C391849002CF94D /* CategoryButton.swift */; };
 		511086962C391BAC002CF94D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086952C391BAC002CF94D /* CardView.swift */; };
+		5110869C2C3930EC002CF94D /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110869B2C3930EC002CF94D /* CardData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		511086912C3916CE002CF94D /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		511086932C391849002CF94D /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		511086952C391BAC002CF94D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		5110869B2C3930EC002CF94D /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			children = (
 				511086832C3910E5002CF94D /* Task.swift */,
 				5109B0392C380D99005460C0 /* Item.swift */,
+				5110869B2C3930EC002CF94D /* CardData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				5110868A2C391130002CF94D /* MessagesView.swift in Sources */,
 				5110868C2C391146002CF94D /* ProfileView.swift in Sources */,
 				511086882C391117002CF94D /* AddView.swift in Sources */,
+				5110869C2C3930EC002CF94D /* CardData.swift in Sources */,
 				5109B0382C380D99005460C0 /* ContentView.swift in Sources */,
 				511086822C3910B6002CF94D /* HomeView.swift in Sources */,
 				511086862C391105002CF94D /* MarketView.swift in Sources */,
