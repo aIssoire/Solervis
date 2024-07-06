@@ -116,21 +116,12 @@
 		5109B0342C380D99005460C0 /* Solervis */ = {
 			isa = PBXGroup;
 			children = (
+				511086992C391D32002CF94D /* Views */,
 				5109B0352C380D99005460C0 /* SolervisApp.swift */,
 				5109B0372C380D99005460C0 /* ContentView.swift */,
-				5109B0392C380D99005460C0 /* Item.swift */,
 				5109B03B2C380D9A005460C0 /* Assets.xcassets */,
 				5109B03D2C380D9A005460C0 /* Preview Content */,
-				511086812C3910B6002CF94D /* HomeView.swift */,
-				511086952C391BAC002CF94D /* CardView.swift */,
-				511086912C3916CE002CF94D /* CustomSearchBar.swift */,
-				511086932C391849002CF94D /* CategoryButton.swift */,
-				5110868F2C391619002CF94D /* SearchBar.swift */,
-				511086852C391105002CF94D /* MarketView.swift */,
-				511086872C391117002CF94D /* AddView.swift */,
-				511086892C391130002CF94D /* MessagesView.swift */,
-				5110868B2C391146002CF94D /* ProfileView.swift */,
-				511086832C3910E5002CF94D /* Task.swift */,
+				511086972C391D09002CF94D /* Models */,
 			);
 			path = Solervis;
 			sourceTree = "<group>";
@@ -158,6 +149,39 @@
 				5109B0542C380D9A005460C0 /* SolervisUITestsLaunchTests.swift */,
 			);
 			path = SolervisUITests;
+			sourceTree = "<group>";
+		};
+		511086972C391D09002CF94D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				511086832C3910E5002CF94D /* Task.swift */,
+				5109B0392C380D99005460C0 /* Item.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		511086992C391D32002CF94D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5110869A2C391D69002CF94D /* Components */,
+				511086892C391130002CF94D /* MessagesView.swift */,
+				5110868B2C391146002CF94D /* ProfileView.swift */,
+				511086872C391117002CF94D /* AddView.swift */,
+				511086852C391105002CF94D /* MarketView.swift */,
+				511086812C3910B6002CF94D /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5110869A2C391D69002CF94D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5110868F2C391619002CF94D /* SearchBar.swift */,
+				511086932C391849002CF94D /* CategoryButton.swift */,
+				511086912C3916CE002CF94D /* CustomSearchBar.swift */,
+				511086952C391BAC002CF94D /* CardView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
