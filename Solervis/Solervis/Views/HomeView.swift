@@ -66,34 +66,38 @@ struct HomeView: View {
                 }
                 .padding(.horizontal)
                 
-                List {
-                    if selectedSegment == "Offres" {
-                        ForEach(offers) { offer in
-                            CardView(
-                                imageURL: offer.imageURL,
-                                title: offer.title,
-                                location: offer.location,
-                                price: offer.price,
-                                userName: offer.userName,
-                                userImageURL: offer.userImageURL,
-                                rating: offer.rating
-                            )
-                        }
-                    } else {
-                        ForEach(requests) { request in
-                            CardView(
-                                imageURL: request.imageURL,
-                                title: request.title,
-                                location: request.location,
-                                price: request.price,
-                                userName: request.userName,
-                                userImageURL: request.userImageURL,
-                                rating: request.rating
-                            )
+                ScrollView {
+                    VStack(spacing: 0) { // Remove spacing to avoid lines between cards
+                        if selectedSegment == "Offres" {
+                            ForEach(offers) { offer in
+                                CardView(
+                                    imageURL: offer.imageURL,
+                                    title: offer.title,
+                                    location: offer.location,
+                                    price: offer.price,
+                                    userName: offer.userName,
+                                    userImageURL: offer.userImageURL,
+                                    rating: offer.rating
+                                )
+                                .padding(.vertical, 10) // Optional padding for better spacing
+                            }
+                        } else {
+                            ForEach(requests) { request in
+                                CardView(
+                                    imageURL: request.imageURL,
+                                    title: request.title,
+                                    location: request.location,
+                                    price: request.price,
+                                    userName: request.userName,
+                                    userImageURL: request.userImageURL,
+                                    rating: request.rating
+                                )
+                                .padding(.vertical, 10) // Optional padding for better spacing
+                            }
                         }
                     }
+                    .padding(.horizontal)
                 }
-                .listStyle(PlainListStyle())
             }
             .onAppear(perform: loadData)
         }
@@ -131,7 +135,6 @@ struct HomeView: View {
             }
         }.resume()
     }
-
 }
 
 struct HomeView_Previews: PreviewProvider {

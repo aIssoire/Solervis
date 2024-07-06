@@ -34,16 +34,19 @@ struct CardView: View {
                 
                 Image(systemName: "heart")
             }
+            .padding([.horizontal, .top])
             .padding(.bottom, 5)
             
             if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(imageURL)") {
                 AsyncImageLoader(url: url)
                     .frame(height: 150)
-                    .cornerRadius(10)
+                    .frame(maxWidth: .infinity)  // Ensure image takes the full width
+                    .clipped() // Ensure the image is clipped to fit the frame
             }
             
             Text(title)
                 .font(.title3)
+                .padding(.horizontal)
                 .padding(.vertical, 5)
             
             HStack {
@@ -56,8 +59,8 @@ struct CardView: View {
                     .foregroundColor(.yellow)
             }
             .font(.subheadline)
+            .padding([.horizontal, .bottom])
         }
-        .padding()
         .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 2)
