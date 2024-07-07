@@ -23,7 +23,7 @@ struct ProfileView: View {
                         
                         Image("add_coin_icon") // Assurez-vous que l'icône est ajoutée aux assets
                             .resizable()
-                            .frame(width: 20, height: 20)
+                            .frame(width: 38, height: 25)
                         
                         Spacer()
                         
@@ -66,37 +66,35 @@ struct ProfileView: View {
                             // Action pour modifier le profil
                         }) {
                             Text("Modifier")
-                                .padding()
+                                .padding(12)
                                 .background(Color.green)
                                 .foregroundColor(.white)
-                                .cornerRadius(8)
+                                .cornerRadius(20)
                         }
                     }
-                    .padding(.top, 8)
+                    .padding(.top, 4)
                     
                     // Ligne 3
                     Text(profile.description)
                         .font(.subheadline)
-                        .padding(.top, 4)
+                        .padding(.bottom, 4)
                     
-                    Divider()
+                    SectionHeader(title: "Infos Personnelles")
                     
-                    Section(header: Text("Infos Personnelles").font(.headline).padding()) {
+                    Section(header: EmptyView()) {
                         InfoRow(iconName: "house", infoText: profile.city)
                         InfoRow(iconName: "phone", infoText: "\(profile.phoneNumber)")
                         InfoRow(iconName: "briefcase", infoText: profile.job)
                         InfoRow(iconName: "heart", infoText: profile.passions.joined(separator: " - "))
                     }
                     
-                    Divider()
+                    SectionHeader(title: "Communauté")
                     
-                    Section(header: Text("Communauté").font(.headline).padding()) {
+                    Section(header: EmptyView()) {
                         InfoRow(iconName: "star", infoText: "\(Double(profile.totalValueRating) / Double(profile.nbRating)) / 5 sur \(profile.nbRating) avis")
                         InfoRow(iconName: "hand.thumbsup", infoText: "\(profile.nbRating) avis reçu")
                         InfoRow(iconName: "hand.thumbsdown", infoText: "\(profile.nbReviewsSent) avis rendu")
                     }
-                    
-                    Divider()
                     
                     // Ajouter ici la section des commentaires
                 }
@@ -165,6 +163,19 @@ struct InfoRow: View {
             Text(infoText)
         }
         .padding(.vertical, 4)
+    }
+}
+
+struct SectionHeader: View {
+    var title: String
+
+    var body: some View {
+        Text(title)
+            .font(.headline)
+            .foregroundColor(.gray)
+            .padding(2)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(UIColor.systemGray6))
     }
 }
 
