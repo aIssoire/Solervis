@@ -82,19 +82,21 @@ struct ProfileView: View {
                     SectionHeader(title: "Infos Personnelles")
                     
                     Section(header: EmptyView()) {
-                        InfoRow(iconName: "house", infoText: profile.city)
-                        InfoRow(iconName: "phone", infoText: "\(profile.phoneNumber)")
-                        InfoRow(iconName: "briefcase", infoText: profile.job)
-                        InfoRow(iconName: "heart", infoText: profile.passions.joined(separator: " - "))
+                        InfoRow(iconName: "pin_p", infoText: profile.city) // Remplacer les noms d'icônes
+                        InfoRow(iconName: "phone_p", infoText: "\(profile.phoneNumber)")
+                        InfoRow(iconName: "job_p", infoText: profile.job)
+                        InfoRow(iconName: "passion_p", infoText: profile.passions.joined(separator: " - "))
                     }
                     
                     SectionHeader(title: "Communauté")
                     
                     Section(header: EmptyView()) {
-                        InfoRow(iconName: "star", infoText: "\(Double(profile.totalValueRating) / Double(profile.nbRating)) / 5 sur \(profile.nbRating) avis")
-                        InfoRow(iconName: "hand.thumbsup", infoText: "\(profile.nbRating) avis reçu")
-                        InfoRow(iconName: "hand.thumbsdown", infoText: "\(profile.nbReviewsSent) avis rendu")
+                        InfoRow(iconName: "rate_p", infoText: "\(Double(profile.totalValueRating) / Double(profile.nbRating)) / 5 sur \(profile.nbRating) avis")
+                        InfoRow(iconName: "review_p", infoText: "\(profile.nbRating) avis reçu")
+                        InfoRow(iconName: "given_review_p", infoText: "\(profile.nbReviewsSent) avis rendu")
                     }
+                    
+                    SectionHeader(title: "Commentaires")
                     
                     // Ajouter ici la section des commentaires
                 }
@@ -158,7 +160,9 @@ struct InfoRow: View {
     
     var body: some View {
         HStack {
-            Image(systemName: iconName)
+            Image(iconName) // Utilisation des images dans les assets
+                .resizable()
+                .frame(width: 24, height: 24)
                 .foregroundColor(.orange)
             Text(infoText)
         }
