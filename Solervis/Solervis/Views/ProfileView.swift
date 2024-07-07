@@ -4,6 +4,7 @@ struct ProfileView: View {
     @State private var userId: String = UserDefaults.standard.string(forKey: "userId") ?? ""
     @State private var profile: UserProfile? = nil
     @State private var errorMessage: String? = nil
+    @State private var comments: [Comment] = []
 
     var body: some View {
         ScrollView {
@@ -97,8 +98,17 @@ struct ProfileView: View {
                     }
                     
                     SectionHeader(title: "Commentaires")
-                    
-                    // Ajouter ici la section des commentaires
+                                        
+                    if comments.isEmpty {
+                        ProgressView()
+                            .onAppear(perform: fetchComments)
+                    } else {
+                        ForEach(comments) { comment in
+                            CommentRow(comment: comment)
+                                .padding(.horizontal)
+                                .padding(.top, 8)
+                        }
+                    }
                 }
                 .padding()
             } else if let errorMessage = errorMessage {
@@ -152,7 +162,97 @@ struct ProfileView: View {
             }
         }.resume()
     }
+    
+    func fetchComments() {
+        guard let userId = UserDefaults.standard.string(forKey: "userId"),
+              let url = URL(string: "https://solervis.fr/api/review/get/user/\(userId)") else {
+            self.errorMessage = "Invalid user ID or URL."
+            print("Invalid user ID or URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(UserDefaults.standard.string(forKey: "token") ?? "", forHTTPHeaderField: "Authorization")
+        
+        print("Sending request to URL:", url)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Request error: \(error.localizedDescription)"
+                    print("Request error:", error.localizedDescription)
+                }
+                return
+            }
+            
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "No data received."
+                    print("No data received.")
+                }
+                return
+            }
+            
+            print("Data received:", String(data: data, encoding: .utf8) ?? "Unable to convert data to string")
+            
+            do {
+                let decodedComments = try JSONDecoder().decode([Comment].self, from: data)
+                DispatchQueue.main.async {
+                    self.comments = decodedComments
+                    print("Commentaires décodés:", decodedComments)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Decoding error: \(error.localizedDescription)"
+                    print("Decoding error:", error.localizedDescription)
+                }
+            }
+        }.resume()
+    }
+
 }
+
+struct CommentRow: View {
+    var comment: Comment
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(comment.sender.profilePicturePath)") {
+                AsyncImageLoader(url: url)
+                    .frame(width: 50, height: 50)
+                    .clipShape(Circle())
+            }
+            
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(comment.sender.name)
+                        .font(.headline)
+                    Spacer()
+                    HStack(spacing: 2) {
+                        Text("\(comment.grade)")
+                            .font(.subheadline)
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.yellow)
+                    }
+                }
+                Text(comment.comment)
+                    .font(.body)
+                    .padding(.vertical, 2)
+                Text("il y a \(formatDate(comment.date))")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+            }
+        }
+    }
+    
+    func formatDate(_ date: String) -> String {
+        // Format the date string as needed
+        return "un mois" // Example, replace with actual date formatting
+    }
+}
+
 
 struct InfoRow: View {
     var iconName: String

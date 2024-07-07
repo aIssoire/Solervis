@@ -30,6 +30,7 @@
 		511086A02C3A34A8002CF94D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110869F2C3A34A8002CF94D /* LoginView.swift */; };
 		511086A22C3A363A002CF94D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A12C3A363A002CF94D /* CustomTextField.swift */; };
 		511086A42C3A4566002CF94D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A32C3A4566002CF94D /* UserProfile.swift */; };
+		511086A62C3A899B002CF94D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A52C3A899B002CF94D /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		5110869F2C3A34A8002CF94D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		511086A12C3A363A002CF94D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		511086A32C3A4566002CF94D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		511086A52C3A899B002CF94D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				5109B0392C380D99005460C0 /* Item.swift */,
 				5110869B2C3930EC002CF94D /* CardData.swift */,
 				511086A32C3A4566002CF94D /* UserProfile.swift */,
+				511086A52C3A899B002CF94D /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				5109B03A2C380D99005460C0 /* Item.swift in Sources */,
 				511086942C391849002CF94D /* CategoryButton.swift in Sources */,
 				511086922C3916CE002CF94D /* CustomSearchBar.swift in Sources */,
+				511086A62C3A899B002CF94D /* Comment.swift in Sources */,
 				511086A02C3A34A8002CF94D /* LoginView.swift in Sources */,
 				5109B0362C380D99005460C0 /* SolervisApp.swift in Sources */,
 			);
