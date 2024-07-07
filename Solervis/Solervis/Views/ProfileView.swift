@@ -5,7 +5,7 @@ struct ProfileView: View {
     @State private var profile: UserProfile? = nil
     @State private var errorMessage: String? = nil
     @State private var comments: [Comment] = []
-
+    
     var body: some View {
         ScrollView {
             if let profile = profile {
@@ -98,7 +98,7 @@ struct ProfileView: View {
                     }
                     
                     SectionHeader(title: "Commentaires")
-                                        
+                    
                     if comments.isEmpty {
                         ProgressView()
                             .onAppear(perform: fetchComments)
@@ -118,6 +118,18 @@ struct ProfileView: View {
             } else {
                 ProgressView()
                     .onAppear(perform: fetchProfile)
+            }
+            Button(action: {
+                // Action pour "Mes offres"
+            }) {
+                Text("Mes offres")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.orange)
+                    .cornerRadius(10)
+                    .padding()
             }
         }
         .navigationBarHidden(true)
@@ -211,7 +223,7 @@ struct ProfileView: View {
             }
         }.resume()
     }
-
+    
 }
 
 struct CommentRow: View {
@@ -272,7 +284,7 @@ struct InfoRow: View {
 
 struct SectionHeader: View {
     var title: String
-
+    
     var body: some View {
         Text(title)
             .font(.headline)
