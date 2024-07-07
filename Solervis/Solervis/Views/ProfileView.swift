@@ -1,8 +1,128 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @State private var userId: String = UserDefaults.standard.string(forKey: "userId") ?? ""
+    @State private var profile: UserProfile? = nil
+    @State private var errorMessage: String? = nil
+
     var body: some View {
-        Text("Profile")
+        ScrollView {
+            if let profile = profile {
+                VStack {
+                    HStack {
+                        if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(profile.profilePicturePath)") {
+                            AsyncImageLoader(url: url)
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                        }
+                        
+                        
+                        VStack(alignment: .leading) {
+                            Text("\(profile.rayons)")
+                                .font(.title)
+                                .bold()
+                            Text(profile.username)
+                                .font(.title)
+                                .bold()
+                            Text(profile.description)
+                                .font(.subheadline)
+                        }
+                        Spacer()
+                        Button(action: {
+                            // Action pour modifier le profil
+                        }) {
+                            Text("Modifier")
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                    }
+                    
+                    Divider()
+                    
+                    Section(header: Text("Infos Personnelles").font(.headline).padding()) {
+                        InfoRow(iconName: "house", infoText: profile.city)
+                        InfoRow(iconName: "phone", infoText: "\(profile.phoneNumber)")
+                        InfoRow(iconName: "briefcase", infoText: profile.job)
+                        InfoRow(iconName: "heart", infoText: profile.passions.joined(separator: " - "))
+                    }
+                    
+                    Divider()
+                    
+                    Section(header: Text("Communauté").font(.headline).padding()) {
+                        InfoRow(iconName: "star", infoText: "\(Double(profile.totalValueRating) / Double(profile.nbRating)) / 5 sur \(profile.nbRating) avis")
+                        InfoRow(iconName: "hand.thumbsup", infoText: "\(profile.nbRating) avis reçu")
+                        InfoRow(iconName: "hand.thumbsdown", infoText: "\(profile.nbReviewsSent) avis rendu")
+                    }
+                    
+                    Divider()
+                    
+                    // Ajouter ici la section des commentaires
+                }
+                .padding()
+            } else if let errorMessage = errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .padding()
+            } else {
+                ProgressView()
+                    .onAppear(perform: fetchProfile)
+            }
+        }
+    }
+    
+    func fetchProfile() {
+        guard let url = URL(string: "https://solervis.fr/api/user/me") else {
+            self.errorMessage = "URL invalide."
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(UserDefaults.standard.string(forKey: "token") ?? "", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Erreur de requête : \(error.localizedDescription)"
+                }
+                return
+            }
+            
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Données non reçues."
+                }
+                return
+            }
+            
+            do {
+                let decodedProfile = try JSONDecoder().decode(UserProfile.self, from: data)
+                DispatchQueue.main.async {
+                    self.profile = decodedProfile
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Erreur de décodage : \(error.localizedDescription)"
+                }
+            }
+        }.resume()
+    }
+}
+
+struct InfoRow: View {
+    var iconName: String
+    var infoText: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: iconName)
+                .foregroundColor(.orange)
+            Text(infoText)
+        }
+        .padding(.vertical, 4)
     }
 }
 

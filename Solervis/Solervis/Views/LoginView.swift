@@ -70,7 +70,7 @@ struct LoginView: View {
                 .padding(.bottom, 30)
             }
             .background(
-                NavigationLink(destination: HomeView(), isActive: $isLoggedIn) {
+                NavigationLink(destination: ProfileView(), isActive: $isLoggedIn) {
                     EmptyView()
                 }
             )
