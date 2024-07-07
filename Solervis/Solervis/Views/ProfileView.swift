@@ -8,26 +8,60 @@ struct ProfileView: View {
     var body: some View {
         ScrollView {
             if let profile = profile {
-                VStack {
+                VStack(alignment: .leading) {
+                    // Ligne 1
                     HStack {
                         if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(profile.profilePicturePath)") {
                             AsyncImageLoader(url: url)
-                                .frame(width: 80, height: 80)
+                                .frame(width: 50, height: 50)
                                 .clipShape(Circle())
                         }
                         
+                        Text("\(profile.rayons)")
+                            .font(.title)
+                            .bold()
                         
-                        VStack(alignment: .leading) {
-                            Text("\(profile.rayons)")
-                                .font(.title)
-                                .bold()
-                            Text(profile.username)
-                                .font(.title)
-                                .bold()
-                            Text(profile.description)
-                                .font(.subheadline)
-                        }
+                        Image("add_coin_icon") // Assurez-vous que l'icône est ajoutée aux assets
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        
                         Spacer()
+                        
+                        HStack(spacing: 16) {
+                            Button(action: {
+                                // Action pour notifications
+                            }) {
+                                Image("notification_icon") // Assurez-vous que l'icône est ajoutée aux assets
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                            }
+                            
+                            Button(action: {
+                                // Action pour favoris
+                            }) {
+                                Image("favorite_icon") // Assurez-vous que l'icône est ajoutée aux assets
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                            }
+                            
+                            Button(action: {
+                                // Action pour paramètres
+                            }) {
+                                Image("settings_icon") // Assurez-vous que l'icône est ajoutée aux assets
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                            }
+                        }
+                    }
+                    
+                    // Ligne 2
+                    HStack {
+                        Text(profile.username)
+                            .font(.title)
+                            .bold()
+                        
+                        Spacer()
+                        
                         Button(action: {
                             // Action pour modifier le profil
                         }) {
@@ -38,6 +72,12 @@ struct ProfileView: View {
                                 .cornerRadius(8)
                         }
                     }
+                    .padding(.top, 8)
+                    
+                    // Ligne 3
+                    Text(profile.description)
+                        .font(.subheadline)
+                        .padding(.top, 4)
                     
                     Divider()
                     
