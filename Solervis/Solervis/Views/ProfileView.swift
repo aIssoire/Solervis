@@ -110,6 +110,8 @@ struct ProfileView: View {
                     .onAppear(perform: fetchProfile)
             }
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
     
     func fetchProfile() {
