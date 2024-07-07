@@ -1,37 +1,48 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab: Int = 0
+    @State private var isUserLoggedIn: Bool = false
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Accueil")
+                    Label("Accueil", systemImage: "house")
                 }
+                .tag(0)
             
             MarketView()
                 .tabItem {
-                    Image(systemName: "cart.fill")
-                    Text("Market")
+                    Label("Market", systemImage: "cart")
                 }
+                .tag(1)
             
             AddView()
                 .tabItem {
-                    Image(systemName: "plus.circle.fill")
-                    Text("Ajouter")
+                    Label("Ajouter", systemImage: "plus.circle")
                 }
+                .tag(2)
             
             MessagesView()
                 .tabItem {
-                    Image(systemName: "message.fill")
-                    Text("Messagerie")
+                    Label("Messagerie", systemImage: "message")
                 }
+                .tag(3)
             
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
+            if isUserLoggedIn {
+                ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person")
+                    }
+                    .tag(4)
+            } else {
+                LoginView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person")
+                    }
+                    .tag(4)
+            }
         }
     }
 }

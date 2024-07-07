@@ -27,6 +27,8 @@
 		511086962C391BAC002CF94D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086952C391BAC002CF94D /* CardView.swift */; };
 		5110869C2C3930EC002CF94D /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110869B2C3930EC002CF94D /* CardData.swift */; };
 		5110869E2C393697002CF94D /* AsyncImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110869D2C393697002CF94D /* AsyncImageLoader.swift */; };
+		511086A02C3A34A8002CF94D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110869F2C3A34A8002CF94D /* LoginView.swift */; };
+		511086A22C3A363A002CF94D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A12C3A363A002CF94D /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		511086952C391BAC002CF94D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		5110869B2C3930EC002CF94D /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		5110869D2C393697002CF94D /* AsyncImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageLoader.swift; sourceTree = "<group>"; };
+		5110869F2C3A34A8002CF94D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		511086A12C3A363A002CF94D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,7 @@
 				511086872C391117002CF94D /* AddView.swift */,
 				511086852C391105002CF94D /* MarketView.swift */,
 				511086812C3910B6002CF94D /* HomeView.swift */,
+				5110869F2C3A34A8002CF94D /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				511086912C3916CE002CF94D /* CustomSearchBar.swift */,
 				511086952C391BAC002CF94D /* CardView.swift */,
 				5110869D2C393697002CF94D /* AsyncImageLoader.swift */,
+				511086A12C3A363A002CF94D /* CustomTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -328,12 +334,14 @@
 				5109B0382C380D99005460C0 /* ContentView.swift in Sources */,
 				511086822C3910B6002CF94D /* HomeView.swift in Sources */,
 				511086862C391105002CF94D /* MarketView.swift in Sources */,
+				511086A22C3A363A002CF94D /* CustomTextField.swift in Sources */,
 				511086842C3910E5002CF94D /* Task.swift in Sources */,
 				511086962C391BAC002CF94D /* CardView.swift in Sources */,
 				511086902C391619002CF94D /* SearchBar.swift in Sources */,
 				5109B03A2C380D99005460C0 /* Item.swift in Sources */,
 				511086942C391849002CF94D /* CategoryButton.swift in Sources */,
 				511086922C3916CE002CF94D /* CustomSearchBar.swift in Sources */,
+				511086A02C3A34A8002CF94D /* LoginView.swift in Sources */,
 				5109B0362C380D99005460C0 /* SolervisApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
