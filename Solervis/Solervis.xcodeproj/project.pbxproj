@@ -32,6 +32,8 @@
 		511086A42C3A4566002CF94D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A32C3A4566002CF94D /* UserProfile.swift */; };
 		511086A62C3A899B002CF94D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A52C3A899B002CF94D /* Comment.swift */; };
 		511086AA2C3AB4B8002CF94D /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A92C3AB4B8002CF94D /* FavoritesView.swift */; };
+		514267032C3B9C920021B4C7 /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514267022C3B9C920021B4C7 /* NotificationData.swift */; };
+		514267052C3B9CA30021B4C7 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514267042C3B9CA30021B4C7 /* NotificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		511086A32C3A4566002CF94D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		511086A52C3A899B002CF94D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		511086A92C3AB4B8002CF94D /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		514267022C3B9C920021B4C7 /* NotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationData.swift; sourceTree = "<group>"; };
+		514267042C3B9CA30021B4C7 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +177,7 @@
 				5110869B2C3930EC002CF94D /* CardData.swift */,
 				511086A32C3A4566002CF94D /* UserProfile.swift */,
 				511086A52C3A899B002CF94D /* Comment.swift */,
+				514267022C3B9C920021B4C7 /* NotificationData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				511086812C3910B6002CF94D /* HomeView.swift */,
 				5110869F2C3A34A8002CF94D /* LoginView.swift */,
 				511086A92C3AB4B8002CF94D /* FavoritesView.swift */,
+				514267042C3B9CA30021B4C7 /* NotificationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				511086AA2C3AB4B8002CF94D /* FavoritesView.swift in Sources */,
 				5110868A2C391130002CF94D /* MessagesView.swift in Sources */,
 				5110868C2C391146002CF94D /* ProfileView.swift in Sources */,
+				514267052C3B9CA30021B4C7 /* NotificationView.swift in Sources */,
 				511086882C391117002CF94D /* AddView.swift in Sources */,
 				5110869E2C393697002CF94D /* AsyncImageLoader.swift in Sources */,
 				5110869C2C3930EC002CF94D /* CardData.swift in Sources */,
@@ -348,6 +355,7 @@
 				511086A22C3A363A002CF94D /* CustomTextField.swift in Sources */,
 				511086842C3910E5002CF94D /* Task.swift in Sources */,
 				511086962C391BAC002CF94D /* CardView.swift in Sources */,
+				514267032C3B9C920021B4C7 /* NotificationData.swift in Sources */,
 				511086902C391619002CF94D /* SearchBar.swift in Sources */,
 				5109B03A2C380D99005460C0 /* Item.swift in Sources */,
 				511086942C391849002CF94D /* CategoryButton.swift in Sources */,

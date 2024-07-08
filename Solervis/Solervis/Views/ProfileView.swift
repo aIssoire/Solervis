@@ -6,6 +6,7 @@ struct ProfileView: View {
     @State private var errorMessage: String? = nil
     @State private var comments: [Comment] = []
     @State private var showFavorites: Bool = false
+    @State private var showNotifications: Bool = false
 
     
     var body: some View {
@@ -32,7 +33,7 @@ struct ProfileView: View {
                         
                         HStack(spacing: 16) {
                             Button(action: {
-                                // Action pour notifications
+                                showNotifications = true
                             }) {
                                 Image("notification_icon") // Assurez-vous que l'icône est ajoutée aux assets
                                     .resizable()
@@ -138,6 +139,12 @@ struct ProfileView: View {
         }
         .background(
                         NavigationLink(destination: FavoritesView(), isActive: $showFavorites) {
+                            EmptyView()
+                        }
+                        .hidden()
+                    )
+        .background(
+                        NavigationLink(destination: NotificationView(), isActive: $showNotifications) {
                             EmptyView()
                         }
                         .hidden()
