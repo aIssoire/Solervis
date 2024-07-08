@@ -31,6 +31,7 @@
 		511086A22C3A363A002CF94D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A12C3A363A002CF94D /* CustomTextField.swift */; };
 		511086A42C3A4566002CF94D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A32C3A4566002CF94D /* UserProfile.swift */; };
 		511086A62C3A899B002CF94D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A52C3A899B002CF94D /* Comment.swift */; };
+		511086AA2C3AB4B8002CF94D /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511086A92C3AB4B8002CF94D /* FavoritesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		511086A12C3A363A002CF94D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		511086A32C3A4566002CF94D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		511086A52C3A899B002CF94D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		511086A92C3AB4B8002CF94D /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				511086852C391105002CF94D /* MarketView.swift */,
 				511086812C3910B6002CF94D /* HomeView.swift */,
 				5110869F2C3A34A8002CF94D /* LoginView.swift */,
+				511086A92C3AB4B8002CF94D /* FavoritesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				511086AA2C3AB4B8002CF94D /* FavoritesView.swift in Sources */,
 				5110868A2C391130002CF94D /* MessagesView.swift in Sources */,
 				5110868C2C391146002CF94D /* ProfileView.swift in Sources */,
 				511086882C391117002CF94D /* AddView.swift in Sources */,

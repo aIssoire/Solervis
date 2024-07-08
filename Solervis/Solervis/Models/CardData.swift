@@ -15,22 +15,24 @@ struct CardData: Identifiable, Decodable {
         var id: String
         var adTitle: String
         var adDescription: String
-        var availabilityDate: String
-        var availabilityDuration: String
         var adPrice: Int
         var adLocation: String
         var picture: [String]
         var userId: String
         var popularity: Int
-        var isOffer: Bool
         var userRating: Double
         
         struct Profile: Decodable {
             var profilePicturePath: String?
             var name: String
-            var firstname: String
         }
     }
     
     var data: Data
+    var categoryName: String?
+    var isFavorite: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case data, categoryName, isFavorite
+    }
 }

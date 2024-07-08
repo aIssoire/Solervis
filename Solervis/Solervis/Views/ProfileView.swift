@@ -5,6 +5,8 @@ struct ProfileView: View {
     @State private var profile: UserProfile? = nil
     @State private var errorMessage: String? = nil
     @State private var comments: [Comment] = []
+    @State private var showFavorites: Bool = false
+
     
     var body: some View {
         ScrollView {
@@ -37,13 +39,15 @@ struct ProfileView: View {
                                     .frame(width: 24, height: 24)
                             }
                             
-                            Button(action: {
-                                // Action pour favoris
-                            }) {
-                                Image("favorite_icon") // Assurez-vous que l'icône est ajoutée aux assets
-                                    .resizable()
-                                    .frame(width: 24, height: 24)
-                            }
+
+                                Button(action: {
+                                    showFavorites = true
+                                }) {
+                                    Image("favorite_icon") // Assurez-vous que l'icône est ajoutée aux assets
+                                        .resizable()
+                                        .frame(width: 24, height: 24)
+                                }
+                            
                             
                             Button(action: {
                                 // Action pour paramètres
@@ -132,6 +136,12 @@ struct ProfileView: View {
                     .padding()
             }
         }
+        .background(
+                        NavigationLink(destination: FavoritesView(), isActive: $showFavorites) {
+                            EmptyView()
+                        }
+                        .hidden()
+                    )
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
