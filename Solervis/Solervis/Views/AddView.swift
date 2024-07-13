@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct AddView: View {
     @State private var selectedImages: [UIImage] = Array(repeating: UIImage(systemName: "plus")!, count: 6)
@@ -53,7 +54,7 @@ struct AddView: View {
                     .padding(.horizontal)
 
                     VStack(spacing: 20) {
-                        NavigationLink(destination: OfferRequestView(isOffer: true), isActive: $isOffer) {
+                        NavigationLink(destination: OfferFormView(), isActive: $isOffer) {
                             Button(action: {
                                 isOffer = true
                             }) {
@@ -72,7 +73,7 @@ struct AddView: View {
                             .font(.title2)
                             .foregroundColor(.gray)
                         
-                        NavigationLink(destination: OfferRequestView(isOffer: false), isActive: $isDemand) {
+                        NavigationLink(destination: RequestFormView(), isActive: $isDemand) {
                             Button(action: {
                                 isDemand = true
                             }) {
