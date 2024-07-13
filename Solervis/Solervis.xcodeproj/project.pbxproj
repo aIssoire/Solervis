@@ -37,6 +37,7 @@
 		514267092C3BD6D50021B4C7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514267082C3BD6D50021B4C7 /* ImagePicker.swift */; };
 		5142670B2C42638C0021B4C7 /* OfferFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142670A2C42638C0021B4C7 /* OfferFormView.swift */; };
 		5142670D2C4264AA0021B4C7 /* RequestFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142670C2C4264AA0021B4C7 /* RequestFormView.swift */; };
+		5142670F2C426F020021B4C7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142670E2C426F020021B4C7 /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		514267082C3BD6D50021B4C7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5142670A2C42638C0021B4C7 /* OfferFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferFormView.swift; sourceTree = "<group>"; };
 		5142670C2C4264AA0021B4C7 /* RequestFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFormView.swift; sourceTree = "<group>"; };
+		5142670E2C426F020021B4C7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 				511086A32C3A4566002CF94D /* UserProfile.swift */,
 				511086A52C3A899B002CF94D /* Comment.swift */,
 				514267022C3B9C920021B4C7 /* NotificationData.swift */,
+				5142670E2C426F020021B4C7 /* UserSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				511086842C3910E5002CF94D /* Task.swift in Sources */,
 				511086962C391BAC002CF94D /* CardView.swift in Sources */,
 				514267032C3B9C920021B4C7 /* NotificationData.swift in Sources */,
+				5142670F2C426F020021B4C7 /* UserSettings.swift in Sources */,
 				511086902C391619002CF94D /* SearchBar.swift in Sources */,
 				5109B03A2C380D99005460C0 /* Item.swift in Sources */,
 				511086942C391849002CF94D /* CategoryButton.swift in Sources */,

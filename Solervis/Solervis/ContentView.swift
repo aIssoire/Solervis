@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userSettings: UserSettings
     @State private var selectedTab: Int = 0
-    @State private var isUserLoggedIn: Bool = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -18,19 +18,35 @@ struct ContentView: View {
                 }
                 .tag(1)
             
-            AddView()
-                .tabItem {
-                    Label("Ajouter", systemImage: "plus.circle")
-                }
-                .tag(2)
+            if userSettings.isUserLoggedIn {
+                AddView()
+                    .tabItem {
+                        Label("Ajouter", systemImage: "plus.circle")
+                    }
+                    .tag(2)
+            } else {
+                LoginView()
+                    .tabItem {
+                        Label("Ajouter", systemImage: "plus.circle")
+                    }
+                    .tag(2)
+            }
             
-            MessagesView()
-                .tabItem {
-                    Label("Messagerie", systemImage: "message")
-                }
-                .tag(3)
+            if userSettings.isUserLoggedIn {
+                MessagesView()
+                    .tabItem {
+                        Label("Messagerie", systemImage: "message")
+                    }
+                    .tag(3)
+            } else {
+                LoginView()
+                    .tabItem {
+                        Label("Messagerie", systemImage: "message")
+                    }
+                    .tag(3)
+            }
             
-            if isUserLoggedIn {
+            if userSettings.isUserLoggedIn {
                 ProfileView()
                     .tabItem {
                         Label("Profile", systemImage: "person")
@@ -50,5 +66,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(UserSettings())
     }
 }

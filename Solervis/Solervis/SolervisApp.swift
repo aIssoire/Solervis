@@ -2,9 +2,12 @@ import SwiftUI
 
 @main
 struct SolervisApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+    @StateObject private var userSettings = UserSettings()
+
+        var body: some Scene {
+            WindowGroup {
+                ContentView()
+                    .environmentObject(userSettings)
+            }
         }
-    }
 }

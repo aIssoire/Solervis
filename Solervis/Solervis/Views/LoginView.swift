@@ -3,10 +3,8 @@ import SwiftUI
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
-    @State private var isLoggedIn: Bool = false
-    @State private var userId: String = ""
-    @State private var token: String = ""
     @State private var errorMessage: String?
+    @EnvironmentObject var userSettings: UserSettings
 
     var body: some View {
         NavigationView {
@@ -69,11 +67,6 @@ struct LoginView: View {
                 .padding(.horizontal, 32)
                 .padding(.bottom, 30)
             }
-            .background(
-                NavigationLink(destination: ProfileView(), isActive: $isLoggedIn) {
-                    EmptyView()
-                }
-            )
         }
     }
     
@@ -101,11 +94,9 @@ struct LoginView: View {
                    let token = json["token"] as? String,
                    let userId = json["id"] as? String {
                     DispatchQueue.main.async {
-                        self.token = token
-                        self.userId = userId
-                        self.isLoggedIn = true
                         UserDefaults.standard.set(userId, forKey: "userId")
                         UserDefaults.standard.set(token, forKey: "token")
+                        self.userSettings.isUserLoggedIn = true
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -124,5 +115,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(UserSettings())
     }
 }
