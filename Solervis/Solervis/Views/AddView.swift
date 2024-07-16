@@ -1,14 +1,13 @@
 import SwiftUI
-import UIKit
+import PhotosUI
 
 struct AddView: View {
     @State private var selectedImages: [UIImage] = Array(repeating: UIImage(systemName: "plus")!, count: 6)
     @State private var isOffer: Bool = false
     @State private var isDemand: Bool = false
-    @State private var showingActionSheet = false
-    @State private var showingImagePicker = false
+    @State private var showImagePicker = false
     @State private var imagePickerSourceType: UIImagePickerController.SourceType = .photoLibrary
-    @State private var currentImageIndex = 0
+    @State private var selectedImageIndex: Int = 0
 
     var body: some View {
         NavigationView {
@@ -37,8 +36,8 @@ struct AddView: View {
                                             .stroke(Color.gray, lineWidth: 1)
                                     )
                                     .onTapGesture {
-                                        currentImageIndex = index
-                                        showingActionSheet = true
+                                        self.selectedImageIndex = index
+                                        self.showImagePicker = true
                                     }
                             }
                         }
@@ -54,9 +53,13 @@ struct AddView: View {
                     .padding(.horizontal)
 
                     VStack(spacing: 20) {
-                        NavigationLink(destination: OfferFormView(), isActive: $isOffer) {
+                        NavigationLink(destination: OfferFormView(isOffer: true, selectedImages: selectedImages), isActive: $isOffer) {
                             Button(action: {
-                                isOffer = true
+                                if selectedImages.contains(where: { $0 != UIImage(systemName: "plus")! }) {
+                                    isOffer = true
+                                } else {
+                                    print("Veuillez sélectionner au moins une image")
+                                }
                             }) {
                                 Text("Offre")
                                     .font(.headline)
@@ -73,9 +76,13 @@ struct AddView: View {
                             .font(.title2)
                             .foregroundColor(.gray)
                         
-                        NavigationLink(destination: RequestFormView(), isActive: $isDemand) {
+                        NavigationLink(destination: RequestFormView(isOffer: false, selectedImages: selectedImages), isActive: $isDemand) {
                             Button(action: {
-                                isDemand = true
+                                if selectedImages.contains(where: { $0 != UIImage(systemName: "plus")! }) {
+                                    isDemand = true
+                                } else {
+                                    print("Veuillez sélectionner au moins une image")
+                                }
                             }) {
                                 Text("Demande")
                                     .font(.headline)
@@ -90,25 +97,12 @@ struct AddView: View {
                     }
                     .padding(.horizontal)
                 }
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(selectedImage: $selectedImages[selectedImageIndex], sourceType: self.imagePickerSourceType)
+                }
             }
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
-            .sheet(isPresented: $showingImagePicker) {
-                ImagePicker(selectedImage: $selectedImages[currentImageIndex], sourceType: imagePickerSourceType)
-            }
-            .actionSheet(isPresented: $showingActionSheet) {
-                ActionSheet(title: Text("Sélectionner une image"), message: Text("Choisissez une source"), buttons: [
-                    .default(Text("Caméra")) {
-                        imagePickerSourceType = .camera
-                        showingImagePicker = true
-                    },
-                    .default(Text("Galerie")) {
-                        imagePickerSourceType = .photoLibrary
-                        showingImagePicker = true
-                    },
-                    .cancel()
-                ])
-            }
         }
     }
 }

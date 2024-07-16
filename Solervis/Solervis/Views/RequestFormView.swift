@@ -11,8 +11,14 @@ struct RequestFormView: View {
     @State private var price: String = ""
     @State private var isNegotiable: Bool = false
     @State private var isBoosted: Bool = false
-    @State private var selectedImages: [UIImage] = []
-    
+    @State private var selectedImages: [UIImage]
+    let isOffer: Bool
+
+    init(isOffer: Bool, selectedImages: [UIImage]) {
+        self.isOffer = isOffer
+        self._selectedImages = State(initialValue: selectedImages)
+    }
+
     let categories = ["Animation", "Bricolage", "Covoiturage", "Cours particuliers", "Déménagement", "Fitness", "Jardinage", "Livraison", "Ménage", "Photographie", "Plomberie", "Réparation", "Services Informatiques", "Traiteur", "Autres"]
 
     var body: some View {
@@ -102,13 +108,20 @@ struct RequestFormView: View {
     }
 
     func submitForm() {
-        let url = URL(string: "https://solervis.fr/api/ads")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
+        guard let userId = UserDefaults.standard.string(forKey: "userId"),
+              let token = UserDefaults.standard.string(forKey: "token") else {
+            return
+        }
 
-        let formData = createFormData()
+        let boundary = "Boundary-\(UUID().uuidString)"
+        var request = URLRequest(url: URL(string: "https://solervis.fr/api/ads")!)
+        request.httpMethod = "POST"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        let formData = createFormData(boundary: boundary)
         request.httpBody = formData
+
+        print("Form Data: \(String(data: formData, encoding: .utf8) ?? "Failed to convert form data to string")")
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
@@ -124,12 +137,14 @@ struct RequestFormView: View {
                 print("Réponse JSON : \(jsonResponse)")
             } catch {
                 print("Erreur de décodage : \(error.localizedDescription)")
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("Response String: \(responseString)")
+                }
             }
         }.resume()
     }
 
-    func createFormData() -> Data {
-        let boundary = "Boundary-\(UUID().uuidString)"
+    func createFormData(boundary: String) -> Data {
         var body = Data()
 
         func append(_ string: String) {
@@ -163,7 +178,7 @@ struct RequestFormView: View {
         append("\(city)\r\n")
 
         append("--\(boundary)\r\n")
-        append("Content-Disposition: form-data; name=\"street\"\r\n\r\n")
+        append("Content-Disposition: form-data; name=\"address\"\r\n\r\n")
         append("\(address)\r\n")
 
         append("--\(boundary)\r\n")
@@ -175,15 +190,21 @@ struct RequestFormView: View {
         append("\(isBoosted)\r\n")
 
         for (index, image) in selectedImages.enumerated() {
-            let imageData = image.jpegData(compressionQuality: 0.8)!
-            append("--\(boundary)\r\n")
-            append("Content-Disposition: form-data; name=\"files\"; filename=\"image\(index).jpg\"\r\n")
-            append("Content-Type: image/jpeg\r\n\r\n")
-            body.append(imageData)
-            append("\r\n")
+            if let imageData = image.jpegData(compressionQuality: 0.8) {
+                append("--\(boundary)\r\n")
+                append("Content-Disposition: form-data; name=\"files\"; filename=\"image\(index).jpg\"\r\n")
+                append("Content-Type: image/jpeg\r\n\r\n")
+                body.append(imageData)
+                append("\r\n")
+            }
         }
 
         append("--\(boundary)--\r\n")
+
+        // Impression du contenu de formData pour le débogage
+        if let bodyString = String(data: body, encoding: .utf8) {
+            print("Form Data: \(bodyString)")
+        }
 
         return body
     }
