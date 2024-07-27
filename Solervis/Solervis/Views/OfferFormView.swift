@@ -5,8 +5,8 @@ struct OfferFormView: View {
     @State private var title: String = ""
     @State private var description: String = ""
     @State private var category: String = ""
-    @State private var availabilityDate: String = ""
-    @State private var availabilityDuration: String = ""
+    @State private var availabilityDate: Date = Date()
+    @State private var availabilityDuration: Int = 1
     @State private var price: String = ""
     @State private var city: String = ""
     @State private var address: String = ""
@@ -14,6 +14,8 @@ struct OfferFormView: View {
     @State private var isNegotiable: Bool = false
     @State private var isBoosted: Bool = false
     @State private var selectedImages: [UIImage] = []
+    @State private var showingDatePicker = false
+    @State private var showingDurationPicker = false
     let isOffer: Bool
 
     init(isOffer: Bool, selectedImages: [UIImage]) {
@@ -60,13 +62,48 @@ struct OfferFormView: View {
                             }
                         }
                         .pickerStyle(MenuPickerStyle())
-                        
-                        TextField("Disponibilités", text: $availabilityDate)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        TextField("Durée", text: $availabilityDuration)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
+
+                        Button(action: {
+                            showingDatePicker.toggle()
+                        }) {
+                            HStack {
+                                Text("Disponibilités: \(availabilityDate, formatter: dateFormatter)")
+                                Spacer()
+                                Image(systemName: "calendar")
+                            }
+                        }
+                        .sheet(isPresented: $showingDatePicker) {
+                            DatePicker("Disponibilités", selection: $availabilityDate, displayedComponents: .date)
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                                .padding()
+                        }
+
+                        Button(action: {
+                            showingDurationPicker.toggle()
+                        }) {
+                            HStack {
+                                Text("Durée: \(availabilityDuration) heures")
+                                Spacer()
+                                Image(systemName: "clock")
+                            }
+                        }
+                        .sheet(isPresented: $showingDurationPicker) {
+                            VStack {
+                                Text("Durée (heures)")
+                                Picker("Durée (heures)", selection: $availabilityDuration) {
+                                    ForEach(1..<25) { duration in
+                                        Text("\(duration) heures").tag(duration)
+                                    }
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                                .labelsHidden()
+                                Button("OK") {
+                                    showingDurationPicker.toggle()
+                                }
+                            }
+                            .padding()
+                        }
+
                         TextField("Ville *", text: $city)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         
@@ -97,19 +134,6 @@ struct OfferFormView: View {
                     }
 
                     Button(action: {
-                        // Impression des données pour le débogage
-                        print("Titre: \(title)")
-                        print("Description: \(description)")
-                        print("Catégorie: \(category)")
-                        print("Disponibilités: \(availabilityDate)")
-                        print("Durée: \(availabilityDuration)")
-                        print("Ville: \(city)")
-                        print("Adresse: \(address)")
-                        print("Code Postal: \(postalCode)")
-                        print("Prix: \(price)")
-                        print("Négociable: \(isNegotiable)")
-                        print("Boosted: \(isBoosted)")
-                        
                         submitForm()
                     }) {
                         Text("Déposer")
@@ -225,12 +249,13 @@ struct OfferFormView: View {
         append("\(availabilityDuration)\r\n")
 
         for (index, image) in selectedImages.enumerated() {
-            let imageData = image.jpegData(compressionQuality: 0.8)!
-            append("--\(boundary)\r\n")
-            append("Content-Disposition: form-data; name=\"files\"; filename=\"image\(index).jpg\"\r\n")
-            append("Content-Type: image/jpeg\r\n\r\n")
-            body.append(imageData)
-            append("\r\n")
+            if let imageData = image.jpegData(compressionQuality: 0.8) {
+                append("--\(boundary)\r\n")
+                append("Content-Disposition: form-data; name=\"files\"; filename=\"image\(index).jpg\"\r\n")
+                append("Content-Type: image/jpeg\r\n\r\n")
+                body.append(imageData)
+                append("\r\n")
+            }
         }
 
         append("--\(boundary)--\r\n")
@@ -242,4 +267,10 @@ struct OfferFormView: View {
 
         return body
     }
+}
+
+private var dateFormatter: DateFormatter {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    return formatter
 }
