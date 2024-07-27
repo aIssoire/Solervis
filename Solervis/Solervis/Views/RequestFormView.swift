@@ -59,6 +59,10 @@ struct RequestFormView: View {
                         }
                         .pickerStyle(MenuPickerStyle())
                         
+                        TextField("Ville", text: $city)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                        
                         HStack {
                             TextField("Adresse", text: $address)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -179,6 +183,10 @@ struct RequestFormView: View {
 
         append("--\(boundary)\r\n")
         append("Content-Disposition: form-data; name=\"address\"\r\n\r\n")
+        append("\(address)\r\n")
+        
+        append("--\(boundary)\r\n")
+        append("Content-Disposition: form-data; name=\"street\"\r\n\r\n")
         append("\(address)\r\n")
 
         append("--\(boundary)\r\n")
