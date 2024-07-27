@@ -203,6 +203,10 @@ struct OfferFormView: View {
         append("--\(boundary)\r\n")
         append("Content-Disposition: form-data; name=\"address\"\r\n\r\n")
         append("\(address)\r\n")
+        
+        append("--\(boundary)\r\n")
+        append("Content-Disposition: form-data; name=\"street\"\r\n\r\n")
+        append("\(address)\r\n")
 
         append("--\(boundary)\r\n")
         append("Content-Disposition: form-data; name=\"zipCode\"\r\n\r\n")
