@@ -8,39 +8,44 @@ struct ProfileView: View {
     @State private var showFavorites: Bool = false
     @State private var showNotifications: Bool = false
 
-    
     var body: some View {
-        ScrollView {
-            if let profile = profile {
-                VStack(alignment: .leading) {
-                    // Ligne 1
-                    HStack {
-                        if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(profile.profilePicturePath)") {
-                            AsyncImageLoader(url: url)
-                                .frame(width: 50, height: 50)
-                                .clipShape(Circle())
-                        }
-                        
-                        Text("\(profile.rayons)")
-                            .font(.title)
-                            .bold()
-                        
-                        Image("add_coin_icon") // Assurez-vous que l'icône est ajoutée aux assets
-                            .resizable()
-                            .frame(width: 38, height: 25)
-                        
-                        Spacer()
-                        
-                        HStack(spacing: 16) {
-                            Button(action: {
-                                showNotifications = true
-                            }) {
-                                Image("notification_icon") // Assurez-vous que l'icône est ajoutée aux assets
-                                    .resizable()
-                                    .frame(width: 24, height: 24)
+        NavigationStack {
+            ScrollView {
+                if let profile = profile {
+                    VStack(alignment: .leading) {
+                        // Ligne 1
+                        HStack {
+                            if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(profile.profilePicturePath)") {
+                                AsyncImageLoader(url: url)
+                                    .frame(width: 50, height: 50)
+                                    .clipShape(Circle())
                             }
                             
-
+                            Text("\(profile.rayons)")
+                                .font(.title)
+                                .bold()
+                            
+                            Image("add_coin_icon") // Assurez-vous que l'icône est ajoutée aux assets
+                                .resizable()
+                                .frame(width: 38, height: 25)
+                            
+                            Spacer()
+                            
+                            HStack(spacing: 16) {
+                                NavigationLink(destination: NotificationView(), isActive: $showNotifications) {
+                                    EmptyView()
+                                }
+                                Button(action: {
+                                    showNotifications = true
+                                }) {
+                                    Image("notification_icon") // Assurez-vous que l'icône est ajoutée aux assets
+                                        .resizable()
+                                        .frame(width: 24, height: 24)
+                                }
+                                
+                                NavigationLink(destination: FavoritesView(), isActive: $showFavorites) {
+                                    EmptyView()
+                                }
                                 Button(action: {
                                     showFavorites = true
                                 }) {
@@ -48,109 +53,97 @@ struct ProfileView: View {
                                         .resizable()
                                         .frame(width: 24, height: 24)
                                 }
+                                
+                                Button(action: {
+                                    // Action pour paramètres
+                                }) {
+                                    Image("settings_icon") // Assurez-vous que l'icône est ajoutée aux assets
+                                        .resizable()
+                                        .frame(width: 24, height: 24)
+                                }
+                            }
+                        }
+                        
+                        // Ligne 2
+                        HStack {
+                            Text(profile.username)
+                                .font(.title)
+                                .bold()
                             
+                            Spacer()
                             
                             Button(action: {
-                                // Action pour paramètres
+                                // Action pour modifier le profil
                             }) {
-                                Image("settings_icon") // Assurez-vous que l'icône est ajoutée aux assets
-                                    .resizable()
-                                    .frame(width: 24, height: 24)
+                                Text("Modifier")
+                                    .padding(12)
+                                    .background(Color.green)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(20)
+                            }
+                        }
+                        .padding(.top, 4)
+                        
+                        // Ligne 3
+                        Text(profile.description)
+                            .font(.subheadline)
+                            .padding(.bottom, 4)
+                        
+                        SectionHeader(title: "Infos Personnelles")
+                        
+                        Section(header: EmptyView()) {
+                            InfoRow(iconName: "pin_p", infoText: profile.city) // Remplacer les noms d'icônes
+                            InfoRow(iconName: "phone_p", infoText: "\(profile.phoneNumber)")
+                            InfoRow(iconName: "job_p", infoText: profile.job)
+                            InfoRow(iconName: "passion_p", infoText: profile.passions.joined(separator: " - "))
+                        }
+                        
+                        SectionHeader(title: "Communauté")
+                        
+                        Section(header: EmptyView()) {
+                            InfoRow(iconName: "rate_p", infoText: "\(Double(profile.totalValueRating) / Double(profile.nbRating)) / 5 sur \(profile.nbRating) avis")
+                            InfoRow(iconName: "review_p", infoText: "\(profile.nbRating) avis reçu")
+                            InfoRow(iconName: "given_review_p", infoText: "\(profile.nbReviewsSent) avis rendu")
+                        }
+                        
+                        SectionHeader(title: "Commentaires")
+                        
+                        if comments.isEmpty {
+                            ProgressView()
+                                .onAppear(perform: fetchComments)
+                        } else {
+                            ForEach(comments) { comment in
+                                CommentRow(comment: comment)
+                                    .padding(.horizontal)
+                                    .padding(.top, 8)
                             }
                         }
                     }
-                    
-                    // Ligne 2
-                    HStack {
-                        Text(profile.username)
-                            .font(.title)
-                            .bold()
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            // Action pour modifier le profil
-                        }) {
-                            Text("Modifier")
-                                .padding(12)
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(20)
-                        }
-                    }
-                    .padding(.top, 4)
-                    
-                    // Ligne 3
-                    Text(profile.description)
-                        .font(.subheadline)
-                        .padding(.bottom, 4)
-                    
-                    SectionHeader(title: "Infos Personnelles")
-                    
-                    Section(header: EmptyView()) {
-                        InfoRow(iconName: "pin_p", infoText: profile.city) // Remplacer les noms d'icônes
-                        InfoRow(iconName: "phone_p", infoText: "\(profile.phoneNumber)")
-                        InfoRow(iconName: "job_p", infoText: profile.job)
-                        InfoRow(iconName: "passion_p", infoText: profile.passions.joined(separator: " - "))
-                    }
-                    
-                    SectionHeader(title: "Communauté")
-                    
-                    Section(header: EmptyView()) {
-                        InfoRow(iconName: "rate_p", infoText: "\(Double(profile.totalValueRating) / Double(profile.nbRating)) / 5 sur \(profile.nbRating) avis")
-                        InfoRow(iconName: "review_p", infoText: "\(profile.nbRating) avis reçu")
-                        InfoRow(iconName: "given_review_p", infoText: "\(profile.nbReviewsSent) avis rendu")
-                    }
-                    
-                    SectionHeader(title: "Commentaires")
-                    
-                    if comments.isEmpty {
-                        ProgressView()
-                            .onAppear(perform: fetchComments)
-                    } else {
-                        ForEach(comments) { comment in
-                            CommentRow(comment: comment)
-                                .padding(.horizontal)
-                                .padding(.top, 8)
-                        }
-                    }
+                    .padding()
+                } else if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .padding()
+                } else {
+                    ProgressView()
+                        .onAppear(perform: fetchProfile)
                 }
-                .padding()
-            } else if let errorMessage = errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .padding()
-            } else {
-                ProgressView()
-                    .onAppear(perform: fetchProfile)
+                Button(action: {
+                    // Action pour "Mes offres"
+                }) {
+                    Text("Mes offres")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.orange)
+                        .cornerRadius(10)
+                        .padding()
+                }
             }
-            Button(action: {
-                // Action pour "Mes offres"
-            }) {
-                Text("Mes offres")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.orange)
-                    .cornerRadius(10)
-                    .padding()
-            }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        .background(
-                        NavigationLink(destination: FavoritesView(), isActive: $showFavorites) {
-                            EmptyView()
-                        }
-                        .hidden()
-                    )
-        .background(
-                        NavigationLink(destination: NotificationView(), isActive: $showNotifications) {
-                            EmptyView()
-                        }
-                        .hidden()
-                    )
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
     }
     
     func fetchProfile() {
@@ -240,7 +233,6 @@ struct ProfileView: View {
             }
         }.resume()
     }
-    
 }
 
 struct CommentRow: View {
@@ -281,7 +273,6 @@ struct CommentRow: View {
         return "un mois" // Example, replace with actual date formatting
     }
 }
-
 
 struct InfoRow: View {
     var iconName: String
