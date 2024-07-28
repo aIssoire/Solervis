@@ -4,6 +4,7 @@ struct ConversationPage: View {
     let conversation: Conversation
     @State private var activeTabId: String
     @State private var tabsWithSharedId: [ConversationTabWithSharedId]
+    @Environment(\.presentationMode) var presentationMode
 
     init(conversation: Conversation) {
         self.conversation = conversation
@@ -18,7 +19,7 @@ struct ConversationPage: View {
             // Header
             HStack {
                 Button(action: {
-                    // Action to go back
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.left")
                         .font(.title)
@@ -68,6 +69,11 @@ struct ConversationPage: View {
                 AdConv(convInfo: tabsWithSharedId.first { $0.id == activeTabId }!)
             }
         }
+        .gesture(DragGesture().onEnded { value in
+            if value.translation.width > 100 {
+                presentationMode.wrappedValue.dismiss()
+            }
+        })
         .navigationBarHidden(true)
     }
 }
