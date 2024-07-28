@@ -11,16 +11,10 @@ struct AdDetailView: View {
                 ZStack(alignment: .topLeading) {
                     TabView {
                         ForEach(item.data.picture, id: \.self) { uri in
-                            if let url = URL(string: uri) {
-                                AsyncImage(url: url) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .frame(width: UIScreen.main.bounds.width, height: 300)
-                                .clipped()
+                            if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(uri)") {
+                                AsyncImageLoader(url: url)
+                                    .frame(width: UIScreen.main.bounds.width, height: 300)
+                                    .clipped()
                             }
                         }
                     }
@@ -83,15 +77,10 @@ struct AdDetailView: View {
 
                     // Profile section
                     HStack {
-                        if let url = URL(string: item.userImageURL) {
-                            AsyncImage(url: url) { image in
-                                image
-                                    .resizable()
-                                    .clipShape(Circle())
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 50, height: 50)
+                        if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(item.userImageURL)") {
+                            AsyncImageLoader(url: url)
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
                         }
 
                         VStack(alignment: .leading) {
@@ -129,8 +118,8 @@ struct AdDetailView: View {
 
 struct AdDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let profile = CardData.Data.Profile(profilePicturePath: "https://example.com/profile.jpg", name: "Nom_de_Profil")
-        let data = CardData.Data(profile: profile, id: "1", adTitle: "Aménagement extérieur", adDescription: "Une description de l’annonce...", adPrice: 100, adLocation: "Paris", picture: ["https://example.com/image1.jpg"], userId: "1", popularity: 0, userRating: 4.5)
+        let profile = CardData.Data.Profile(profilePicturePath: "File/521588-1716550427743.jpeg", name: "Nom_de_Profil")
+        let data = CardData.Data(profile: profile, id: "1", adTitle: "Aménagement extérieur", adDescription: "Une description de l’annonce...", adPrice: 100, adLocation: "Paris", picture: ["File/6816-1718446755324.jpeg"], userId: "1", popularity: 0, userRating: 4.5)
         let item = CardData(data: data, categoryName: nil, isFavorite: nil)
         AdDetailView(item: item)
     }
