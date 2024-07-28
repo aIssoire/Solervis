@@ -37,18 +37,11 @@ struct MessagerieView: View {
                                                 .frame(width: 50, height: 50)
                                                 .clipShape(Circle())
                                         }
-
-                                        VStack(alignment: .leading) {
-                                            Text(convo.username)
-                                                .font(.headline)
-                                            Text(convo.tabs.first?.title ?? "")
-                                                .lineLimit(1)
-                                                .foregroundColor(.secondary)
-                                        }
+                                        
+                                        Text(convo.username)
+                                            .font(.headline)
                                         Spacer()
-                                        Text(convo.tabs.first?.timestamp ?? "")
-                                            .foregroundColor(.secondary)
-                                            .font(.caption)
+                                        
                                     }
                                     .padding(.vertical, 5)
                                 }
