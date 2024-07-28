@@ -12,16 +12,16 @@ struct FavoritesView: View {
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "chevron.left")
-                        .font(.title2)
+                        .font(.largeTitle)
                         .foregroundColor(.black)
                 }
                 Spacer()
                 Text("Favoris")
-                    .font(.title2)
+                    .font(.largeTitle)
                     .bold()
                 Spacer()
                 Image(systemName: "chevron.left")
-                    .font(.title2)
+                    .font(.largeTitle)
                     .foregroundColor(.clear)
             }
             .padding()

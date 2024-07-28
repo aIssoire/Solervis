@@ -33,7 +33,7 @@ struct ContentView: View {
             }
             
             if userSettings.isUserLoggedIn {
-                MessagesView()
+                MessagerieView()
                     .tabItem {
                         Label("Messagerie", systemImage: "message")
                     }
