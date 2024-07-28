@@ -75,28 +75,34 @@ struct HomeView: View {
                         if selectedCategory == nil {
                             if selectedSegment == "Offres" {
                                 ForEach(offers) { offer in
-                                    CardView(
-                                        imageURL: offer.imageURL,
-                                        title: offer.title,
-                                        location: offer.location,
-                                        price: offer.price,
-                                        userName: offer.userName,
-                                        userImageURL: offer.userImageURL,
-                                        rating: offer.rating
-                                    )
+                                    NavigationLink(destination: AdDetailView(item: offer)) {
+                                        CardView(
+                                            imageURL: offer.imageURL,
+                                            title: offer.title,
+                                            location: offer.location,
+                                            price: offer.price,
+                                            userName: offer.userName,
+                                            userImageURL: offer.userImageURL,
+                                            rating: offer.rating
+                                        )
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                     .padding(.vertical, 10) // Optional padding for better spacing
                                 }
                             } else {
                                 ForEach(requests) { request in
-                                    CardView(
-                                        imageURL: request.imageURL,
-                                        title: request.title,
-                                        location: request.location,
-                                        price: request.price,
-                                        userName: request.userName,
-                                        userImageURL: request.userImageURL,
-                                        rating: request.rating
-                                    )
+                                    NavigationLink(destination: AdDetailView(item: request)) {
+                                        CardView(
+                                            imageURL: request.imageURL,
+                                            title: request.title,
+                                            location: request.location,
+                                            price: request.price,
+                                            userName: request.userName,
+                                            userImageURL: request.userImageURL,
+                                            rating: request.rating
+                                        )
+                                    }
+                                    .buttonStyle(PlainButtonStyle())
                                     .padding(.vertical, 10) // Optional padding for better spacing
                                 }
                             }
