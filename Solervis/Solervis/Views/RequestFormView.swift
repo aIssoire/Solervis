@@ -107,6 +107,11 @@ struct RequestFormView: View {
                 .padding(.horizontal)
             }
         }
+        .gesture(DragGesture().onEnded { value in
+            if value.translation.width > 100 {
+                presentationMode.wrappedValue.dismiss()
+            }
+        })
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }

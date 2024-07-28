@@ -59,14 +59,16 @@ struct CardView: View {
                 .foregroundColor(.primary) // Fix text color to primary (black in light mode)
 
             HStack {
-                Image(systemName: "mappin.and.ellipse")
+                Image(systemName: "location.fill")
                 Text(location)
                     .foregroundColor(.secondary)
                 Spacer()
                 Text("\(price) ")
                     .foregroundColor(.primary) // Fix text color to primary (black in light mode)
-                Image(systemName: "circle.fill")
-                    .foregroundColor(.yellow)
+                Image("coin_icon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20, height: 20)
             }
             .font(.subheadline)
             .padding([.horizontal, .bottom])
