@@ -4,7 +4,6 @@ struct MessagerieView: View {
     @State private var searchTerm: String = ""
     @State private var conversations: [Conversation] = []
     @State private var isLoading: Bool = true
-    @State private var profileImages: [String: UIImage] = [:]
 
     var body: some View {
         NavigationView {
@@ -14,9 +13,9 @@ struct MessagerieView: View {
                     .font(.largeTitle)
                     .bold()
                 
-                // SearchBarr
+                // Search Bar
                 CustomSearchBar(text: $searchTerm)
-                    .padding(.horizontal)
+                    .scenePadding(.bottom)
 
                 // Conversation List
                 if isLoading {
@@ -28,9 +27,8 @@ struct MessagerieView: View {
                             ForEach(filteredConversations, id: \.id) { convo in
                                 NavigationLink(destination: ConversationDetailView(conversation: convo)) {
                                     HStack {
-                                        if let image = profileImages[convo.id] {
-                                            Image(uiImage: image)
-                                                .resizable()
+                                        if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(convo.profilePicturePath ?? "")") {
+                                            AsyncImageLoader(url: url)
                                                 .frame(width: 50, height: 50)
                                                 .clipShape(Circle())
                                         } else {
@@ -104,34 +102,13 @@ struct MessagerieView: View {
                 DispatchQueue.main.async {
                     self.conversations = decodedConversations
                     self.isLoading = false
-                    fetchProfileImages()
+                    
                 }
             } catch {
                 print("Failed to decode JSON: \(error)")
                 isLoading = false
             }
         }.resume()
-    }
-
-    func fetchProfileImages() {
-        for conversation in conversations {
-            guard let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(conversation.profilePicturePath ?? "")") else {
-                self.profileImages[conversation.id] = UIImage(systemName: "person.crop.circle.fill")
-                continue
-            }
-
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.profileImages[conversation.id] = image
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.profileImages[conversation.id] = UIImage(systemName: "person.crop.circle.fill")
-                    }
-                }
-            }.resume()
-        }
     }
 }
 

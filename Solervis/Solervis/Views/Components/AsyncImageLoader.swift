@@ -27,22 +27,14 @@ struct AsyncImageLoader: View {
                 print("Error fetching image: \(error)")
                 return
             }
-            if let data = data {
-                if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String] {
-                    if let imageUrlString = json.first, let imageUrl = URL(string: imageUrlString) {
-                        self.fetchActualImage(from: imageUrl)
-                    }
-                } else {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.imageData = data
-                        }
-                    } else {
-                        print("Failed to convert data to UIImage")
-                    }
+            if let data = data, let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String], let imageUrlString = json.first, let imageUrl = URL(string: imageUrlString) {
+                self.fetchActualImage(from: imageUrl)
+            } else if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.imageData = data
                 }
             } else {
-                print("No data received")
+                print("Failed to convert data to UIImage")
             }
         }.resume()
     }
@@ -54,16 +46,12 @@ struct AsyncImageLoader: View {
                 return
             }
             
-            if let data = data {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.imageData = data
-                    }
-                } else {
-                    print("Failed to convert actual image data to UIImage")
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.imageData = data
                 }
             } else {
-                print("No actual image data received")
+                print("Failed to convert actual image data to UIImage")
             }
         }.resume()
     }
