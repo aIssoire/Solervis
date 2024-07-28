@@ -50,13 +50,15 @@ struct CardView: View {
                 .padding(.vertical, 5)
             
             HStack {
-                Image(systemName: "mappin.and.ellipse")
+                Image(systemName: "location.fill")
                 Text(location)
                     .foregroundColor(.secondary)
                 Spacer()
                 Text("\(price) ")
-                Image(systemName: "circle.fill")
-                    .foregroundColor(.yellow)
+                Image("coin_icon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
             }
             .font(.subheadline)
             .padding([.horizontal, .bottom])

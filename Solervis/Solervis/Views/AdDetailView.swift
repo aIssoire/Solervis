@@ -21,15 +21,32 @@ struct AdDetailView: View {
                     .tabViewStyle(PageTabViewStyle())
                     .frame(height: 300)
 
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.white)
-                            .background(Color.black.opacity(0.7))
-                            .clipShape(Circle())
-                    }
-                    .padding()
+                    HStack {
+                                            Button(action: {
+                                                presentationMode.wrappedValue.dismiss()
+                                            }) {
+                                                Image(systemName: "xmark.circle")
+                                                    .resizable()
+                                                    .frame(width: 25, height: 25)
+                                                    .foregroundColor(.black)
+                                                    .background(Circle().fill(Color.white).frame(width: 40, height: 40))
+                                            }
+                                            .padding()
+
+                                            Spacer()
+
+                                            Button(action: {
+                                                // Action de partage
+                                                shareAd()
+                                            }) {
+                                                Image(systemName: "square.and.arrow.up")
+                                                    .resizable()
+                                                    .frame(width: 20, height: 20)
+                                                    .foregroundColor(.black)
+                                                    .background(Circle().fill(Color.white).frame(width: 40, height: 40))
+                                            }
+                                            .padding()
+                                        }
                 }
 
                 VStack(alignment: .leading, spacing: 16) {
@@ -56,7 +73,10 @@ struct AdDetailView: View {
                             Text("\(item.price)")
                                 .font(.title)
                                 .bold()
-                            Image(systemName: "centsign.circle")
+                            Image("coin_icon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
                         }
 
                         Spacer()
@@ -113,6 +133,12 @@ struct AdDetailView: View {
             }
         }
         .navigationBarHidden(true)
+    }
+
+    func shareAd() {
+        guard let url = URL(string: "https://solervis.fr/ad/\(item.id)") else { return }
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
 }
 
