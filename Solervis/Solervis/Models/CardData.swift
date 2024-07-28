@@ -30,7 +30,7 @@ struct CardData: Identifiable, Decodable {
     
     var data: Data
     var categoryName: String?
-    var isFavorite: String?
+    var isFavorite: Bool?
     
     enum CodingKeys: String, CodingKey {
         case data, categoryName, isFavorite

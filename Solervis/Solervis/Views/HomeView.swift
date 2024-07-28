@@ -83,7 +83,9 @@ struct HomeView: View {
                                             price: offer.price,
                                             userName: offer.userName,
                                             userImageURL: offer.userImageURL,
-                                            rating: offer.rating
+                                            rating: offer.rating,
+                                            isFavorite: offer.isFavorite ?? false,
+                                            itemId: offer.id
                                         )
                                     }
                                     .buttonStyle(PlainButtonStyle())
@@ -99,7 +101,9 @@ struct HomeView: View {
                                             price: request.price,
                                             userName: request.userName,
                                             userImageURL: request.userImageURL,
-                                            rating: request.rating
+                                            rating: request.rating,
+                                            isFavorite: request.isFavorite ?? false,
+                                            itemId: request.id
                                         )
                                     }
                                     .buttonStyle(PlainButtonStyle())
@@ -108,15 +112,20 @@ struct HomeView: View {
                             }
                         } else {
                             ForEach(ads) { ad in
-                                CardView(
-                                    imageURL: ad.imageURL,
-                                    title: ad.title,
-                                    location: ad.location,
-                                    price: ad.price,
-                                    userName: ad.userName,
-                                    userImageURL: ad.userImageURL,
-                                    rating: ad.rating
-                                )
+                                NavigationLink(destination: AdDetailView(item: ad)) {
+                                    CardView(
+                                        imageURL: ad.imageURL,
+                                        title: ad.title,
+                                        location: ad.location,
+                                        price: ad.price,
+                                        userName: ad.userName,
+                                        userImageURL: ad.userImageURL,
+                                        rating: ad.rating,
+                                        isFavorite: ad.isFavorite ?? false,
+                                        itemId: ad.id
+                                    )
+                                }
+                                .buttonStyle(PlainButtonStyle())
                                 .padding(.vertical, 10) // Optional padding for better spacing
                             }
                         }

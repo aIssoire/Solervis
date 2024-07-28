@@ -40,7 +40,9 @@ struct FavoritesView: View {
                                 price: favorite.price,
                                 userName: favorite.userName,
                                 userImageURL: favorite.userImageURL,
-                                rating: favorite.rating
+                                rating: favorite.rating,
+                                isFavorite: favorite.isFavorite ?? false,
+                                itemId: favorite.id
                             )
                             .padding(.horizontal)
                             .padding(.top, 10)

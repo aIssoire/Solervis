@@ -60,6 +60,9 @@ struct ContentView: View {
                     .tag(4)
             }
         }
+        .onAppear {
+                    userSettings.checkLoginStatus()
+                }
     }
 }
 
