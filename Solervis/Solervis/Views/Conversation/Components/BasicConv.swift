@@ -1,52 +1,18 @@
 import SwiftUI
 
-struct ConversationView: View {
-    let conversation: Conversation
+struct BasicConv: View {
+    let convInfo: ConversationTabWithSharedId
     @State private var message: String = ""
     @State private var messages: [Message] = []
-    @Environment(\.presentationMode) var presentationMode
     @State private var websocket: URLSessionWebSocketTask?
 
     var body: some View {
         VStack {
-            // Header
-            HStack {
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "chevron.left")
-                        .font(.title)
-                        .padding(.leading)
-                }
-
-                if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(conversation.profilePicturePath ?? "")") {
-                    AsyncImageLoader(url: url)
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-                } else {
-                    Image(systemName: "person.crop.circle.fill")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-                }
-
-                Text(conversation.username)
-                    .font(.title2)
-                    .bold()
-                    .padding(.leading)
-                
-                Spacer()
-            }
-            .padding()
-
-            Divider()
-
-            // Messages
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(messages) { msg in
                         HStack {
-                            if msg.authorId == conversation.userId {
+                            if msg.authorId == convInfo.userId {
                                 MessageBubbleView(message: msg.content, isSentByCurrentUser: false, timestamp: msg.timestamp)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             } else {
@@ -61,7 +27,6 @@ struct ConversationView: View {
 
             Divider()
 
-            // Input field and send button
             HStack {
                 TextField("Ecrivez votre message...", text: $message)
                     .padding()
@@ -84,11 +49,10 @@ struct ConversationView: View {
         .onDisappear(perform: {
             disconnectWebSocket()
         })
-        .navigationBarHidden(true)
     }
 
     func fetchMessages() {
-        guard let url = URL(string: "https://solervis.fr/api/conversation/conversation-messages?conversationId=\(conversation.id)&concernId=\(conversation.tabs.first?.concernId ?? "")") else { return }
+        guard let url = URL(string: "https://solervis.fr/api/conversation/conversation-messages?conversationId=\(convInfo.sharedId)&concernId=\(convInfo.tab.concernId ?? "")") else { return }
 
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -125,7 +89,7 @@ struct ConversationView: View {
         guard !message.trimmingCharacters(in: .whitespaces).isEmpty else { return }
         guard let userId = UserSettings().userId else { return }
 
-        let payload = SendMessagePayload(sharedId: conversation.id, concernId: conversation.tabs.first?.concernId ?? "", authorId: userId, content: message)
+        let payload = SendMessagePayload(sharedId: convInfo.sharedId, concernId: convInfo.tab.concernId ?? "", authorId: userId, content: message)
 
         guard let url = URL(string: "https://solervis.fr/api/conversation/send-message") else { return }
         
@@ -147,7 +111,7 @@ struct ConversationView: View {
             
             // Send message via WebSocket
             if let websocket = websocket, websocket.state == .running {
-                let messageData = WebSocketMessage(type: "message", sharedId: conversation.id, authorId: userId, content: message)
+                let messageData = WebSocketMessage(type: "message", sharedId: convInfo.sharedId, authorId: userId, content: message)
                 let encoder = JSONEncoder()
                 if let encodedData = try? encoder.encode(messageData) {
                     websocket.send(.data(encodedData)) { error in
@@ -167,7 +131,7 @@ struct ConversationView: View {
         websocket?.resume()
 
         websocket?.send(.string("""
-        {"type": "join", "sharedId": "\(conversation.id)", "authorId": "\(userId)"}
+        {"type": "join", "sharedId": "\(convInfo.sharedId)", "authorId": "\(userId)"}
         """)) { error in
             if let error = error {
                 print("WebSocket join error: \(error)")
@@ -180,7 +144,7 @@ struct ConversationView: View {
     func disconnectWebSocket() {
         guard let userId = UserSettings().userId else { return }
         websocket?.send(.string("""
-        {"type": "leave", "sharedId": "\(conversation.id)", "authorId": "\(userId)"}
+        {"type": "leave", "sharedId": "\(convInfo.sharedId)", "authorId": "\(userId)"}
         """)) { error in
             if let error = error {
                 print("WebSocket leave error: \(error)")
@@ -209,43 +173,5 @@ struct ConversationView: View {
 
             receiveWebSocketMessages()
         }
-    }
-}
-
-// Models
-struct SendMessagePayload: Codable {
-    let sharedId: String
-    let concernId: String
-    let authorId: String
-    let content: String
-}
-
-struct WebSocketMessage: Codable {
-    let type: String
-    let sharedId: String
-    let authorId: String
-    let content: String
-}
-
-// MessageBubbleView (No changes needed here)
-struct MessageBubbleView: View {
-    var message: String
-    var isSentByCurrentUser: Bool
-    var timestamp: String
-
-    var body: some View {
-        VStack(alignment: isSentByCurrentUser ? .trailing : .leading) {
-            Text(message)
-                .padding()
-                .background(isSentByCurrentUser ? Color.green : Color.gray)
-                .cornerRadius(10)
-                .foregroundColor(.white)
-            
-            Text(timestamp)
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .padding(isSentByCurrentUser ? .trailing : .leading)
-        }
-        .padding(isSentByCurrentUser ? .trailing : .leading)
     }
 }

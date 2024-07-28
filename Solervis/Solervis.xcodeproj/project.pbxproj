@@ -34,7 +34,10 @@
 		513954BB2C55FEC4002CBCEB /* AdDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513954BA2C55FEC4002CBCEB /* AdDetailView.swift */; };
 		513954BD2C56202B002CBCEB /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513954BC2C56202B002CBCEB /* Conversation.swift */; };
 		513954BF2C56203C002CBCEB /* MessagerieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513954BE2C56203C002CBCEB /* MessagerieView.swift */; };
-		513954C32C563431002CBCEB /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513954C22C563431002CBCEB /* ConversationView.swift */; };
+		513954C32C563431002CBCEB /* ConversationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513954C22C563431002CBCEB /* ConversationPage.swift */; };
+		513954C92C5644E4002CBCEB /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513954C82C5644E4002CBCEB /* MessageBubbleView.swift */; };
+		513954CB2C564699002CBCEB /* BasicConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513954CA2C564699002CBCEB /* BasicConv.swift */; };
+		513954CD2C5646C7002CBCEB /* AdConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513954CC2C5646C7002CBCEB /* AdConv.swift */; };
 		514267032C3B9C920021B4C7 /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514267022C3B9C920021B4C7 /* NotificationData.swift */; };
 		514267052C3B9CA30021B4C7 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514267042C3B9CA30021B4C7 /* NotificationView.swift */; };
 		514267092C3BD6D50021B4C7 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514267082C3BD6D50021B4C7 /* ImagePicker.swift */; };
@@ -91,7 +94,10 @@
 		513954BA2C55FEC4002CBCEB /* AdDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDetailView.swift; sourceTree = "<group>"; };
 		513954BC2C56202B002CBCEB /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		513954BE2C56203C002CBCEB /* MessagerieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagerieView.swift; sourceTree = "<group>"; };
-		513954C22C563431002CBCEB /* ConversationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
+		513954C22C563431002CBCEB /* ConversationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPage.swift; sourceTree = "<group>"; };
+		513954C82C5644E4002CBCEB /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		513954CA2C564699002CBCEB /* BasicConv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicConv.swift; sourceTree = "<group>"; };
+		513954CC2C5646C7002CBCEB /* AdConv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdConv.swift; sourceTree = "<group>"; };
 		514267022C3B9C920021B4C7 /* NotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationData.swift; sourceTree = "<group>"; };
 		514267042C3B9CA30021B4C7 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		514267082C3BD6D50021B4C7 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 		511086992C391D32002CF94D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				513954C62C56448D002CBCEB /* Conversation */,
 				5110869A2C391D69002CF94D /* Components */,
 				5110868B2C391146002CF94D /* ProfileView.swift */,
 				511086872C391117002CF94D /* AddView.swift */,
@@ -212,8 +219,6 @@
 				5142670A2C42638C0021B4C7 /* OfferFormView.swift */,
 				5142670C2C4264AA0021B4C7 /* RequestFormView.swift */,
 				513954BA2C55FEC4002CBCEB /* AdDetailView.swift */,
-				513954BE2C56203C002CBCEB /* MessagerieView.swift */,
-				513954C22C563431002CBCEB /* ConversationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +233,26 @@
 				5110869D2C393697002CF94D /* AsyncImageLoader.swift */,
 				511086A12C3A363A002CF94D /* CustomTextField.swift */,
 				514267082C3BD6D50021B4C7 /* ImagePicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		513954C62C56448D002CBCEB /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				513954C72C5644C6002CBCEB /* Components */,
+				513954BE2C56203C002CBCEB /* MessagerieView.swift */,
+				513954C22C563431002CBCEB /* ConversationPage.swift */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		513954C72C5644C6002CBCEB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				513954C82C5644E4002CBCEB /* MessageBubbleView.swift */,
+				513954CA2C564699002CBCEB /* BasicConv.swift */,
+				513954CC2C5646C7002CBCEB /* AdConv.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -364,6 +389,7 @@
 			files = (
 				5142670B2C42638C0021B4C7 /* OfferFormView.swift in Sources */,
 				511086AA2C3AB4B8002CF94D /* FavoritesView.swift in Sources */,
+				513954CD2C5646C7002CBCEB /* AdConv.swift in Sources */,
 				5110868C2C391146002CF94D /* ProfileView.swift in Sources */,
 				513954BD2C56202B002CBCEB /* Conversation.swift in Sources */,
 				514267052C3B9CA30021B4C7 /* NotificationView.swift in Sources */,
@@ -371,11 +397,13 @@
 				5110869E2C393697002CF94D /* AsyncImageLoader.swift in Sources */,
 				5110869C2C3930EC002CF94D /* CardData.swift in Sources */,
 				5109B0382C380D99005460C0 /* ContentView.swift in Sources */,
+				513954CB2C564699002CBCEB /* BasicConv.swift in Sources */,
 				5142670D2C4264AA0021B4C7 /* RequestFormView.swift in Sources */,
 				511086822C3910B6002CF94D /* HomeView.swift in Sources */,
 				511086862C391105002CF94D /* MarketView.swift in Sources */,
-				513954C32C563431002CBCEB /* ConversationView.swift in Sources */,
+				513954C32C563431002CBCEB /* ConversationPage.swift in Sources */,
 				511086A42C3A4566002CF94D /* UserProfile.swift in Sources */,
+				513954C92C5644E4002CBCEB /* MessageBubbleView.swift in Sources */,
 				511086A22C3A363A002CF94D /* CustomTextField.swift in Sources */,
 				511086842C3910E5002CF94D /* Task.swift in Sources */,
 				511086962C391BAC002CF94D /* CardView.swift in Sources */,

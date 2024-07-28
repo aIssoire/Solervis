@@ -30,3 +30,17 @@ struct ConversationDetail: Decodable {
     let concernId: String
     let messages: [Message]
 }
+
+struct SendMessagePayload: Codable {
+    let sharedId: String
+    let concernId: String
+    let authorId: String
+    let content: String
+}
+
+struct WebSocketMessage: Codable {
+    let type: String
+    let sharedId: String
+    let authorId: String
+    let content: String
+}

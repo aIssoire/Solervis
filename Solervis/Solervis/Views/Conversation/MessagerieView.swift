@@ -25,7 +25,7 @@ struct MessagerieView: View {
                     ScrollView {
                         VStack {
                             ForEach(filteredConversations, id: \.id) { convo in
-                                NavigationLink(destination: ConversationView(conversation: convo)) {
+                                NavigationLink(destination: ConversationPage(conversation: convo)) {
                                     HStack {
                                         if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(convo.profilePicturePath ?? "")") {
                                             AsyncImageLoader(url: url)
