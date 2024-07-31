@@ -44,6 +44,7 @@
 		5142670B2C42638C0021B4C7 /* OfferFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142670A2C42638C0021B4C7 /* OfferFormView.swift */; };
 		5142670D2C4264AA0021B4C7 /* RequestFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142670C2C4264AA0021B4C7 /* RequestFormView.swift */; };
 		5142670F2C426F020021B4C7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142670E2C426F020021B4C7 /* UserSettings.swift */; };
+		51BE8F3C2C5A4BB300B7AD1E /* ParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE8F3B2C5A4BB300B7AD1E /* ParameterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		5142670A2C42638C0021B4C7 /* OfferFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferFormView.swift; sourceTree = "<group>"; };
 		5142670C2C4264AA0021B4C7 /* RequestFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFormView.swift; sourceTree = "<group>"; };
 		5142670E2C426F020021B4C7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		51BE8F3B2C5A4BB300B7AD1E /* ParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				5142670A2C42638C0021B4C7 /* OfferFormView.swift */,
 				5142670C2C4264AA0021B4C7 /* RequestFormView.swift */,
 				513954BA2C55FEC4002CBCEB /* AdDetailView.swift */,
+				51BE8F3B2C5A4BB300B7AD1E /* ParameterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5142670B2C42638C0021B4C7 /* OfferFormView.swift in Sources */,
+				51BE8F3C2C5A4BB300B7AD1E /* ParameterView.swift in Sources */,
 				511086AA2C3AB4B8002CF94D /* FavoritesView.swift in Sources */,
 				513954CD2C5646C7002CBCEB /* AdConv.swift in Sources */,
 				5110868C2C391146002CF94D /* ProfileView.swift in Sources */,

@@ -7,6 +7,7 @@ struct ProfileView: View {
     @State private var comments: [Comment] = []
     @State private var showFavorites: Bool = false
     @State private var showNotifications: Bool = false
+    @State private var showParameters: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -53,9 +54,11 @@ struct ProfileView: View {
                                         .resizable()
                                         .frame(width: 24, height: 24)
                                 }
-                                
+                                NavigationLink(destination: ParameterView(), isActive: $showParameters) {
+                                    EmptyView()
+                                }
                                 Button(action: {
-                                    // Action pour paramètres
+                                    showParameters = true
                                 }) {
                                     Image("settings_icon") // Assurez-vous que l'icône est ajoutée aux assets
                                         .resizable()
