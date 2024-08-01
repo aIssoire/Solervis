@@ -99,9 +99,34 @@ class UserSettings: ObservableObject {
     }
     
     func logout() {
+        // Effacer les données locales
+        clearUserData()
+        
+        guard let url = URL(string: "https://solervis.fr/api/user/auth/logout") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(self.token ?? "")", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Erreur lors de la déconnexion: \(error)")
+                return
+            }
+            
+            // Enlever les informations utilisateur après une déconnexion réussie
+            DispatchQueue.main.async {
+                self.clearUserData()
+            }
+        }.resume()
+    }
+    
+    private func clearUserData() {
         self.isUserLoggedIn = false
         self.token = nil
         self.userId = nil
+        UserDefaults.standard.removeObject(forKey: "isUserLoggedIn")
+        UserDefaults.standard.removeObject(forKey: "token")
+        UserDefaults.standard.removeObject(forKey: "userId")
     }
 }
-

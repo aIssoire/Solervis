@@ -27,6 +27,7 @@ struct SettingsButton: View {
 
 struct ParameterView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var userSettings: UserSettings
     
     var body: some View {
         ScrollView {
@@ -140,9 +141,11 @@ struct ParameterView: View {
     }
     
     func handleLogoutAndNavigate() {
-        // Implement logout and navigation logic here
-        // For example, making an API call to log out and navigating to the home screen
-    }
+            userSettings.logout()
+            presentationMode.wrappedValue.dismiss()
+            
+            // Redirection vers l'écran de connexion ou d'accueil
+        }
 }
 
 struct ParametreScreen_Previews: PreviewProvider {
