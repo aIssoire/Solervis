@@ -2,13 +2,14 @@ import SwiftUI
 import PhotosUI
 
 struct AddView: View {
+    let navigateTo: (AnyView, Bool) -> Void
     @State private var selectedImages: [UIImage] = Array(repeating: UIImage(systemName: "plus")!, count: 6)
     @State private var isOffer: Bool = false
     @State private var isDemand: Bool = false
     @State private var showImagePicker = false
     @State private var imagePickerSourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImageIndex: Int = 0
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -16,7 +17,7 @@ struct AddView: View {
                     .font(.largeTitle)
                     .bold()
                     .padding(.top)
-
+                
                 ScrollView {
                     VStack(spacing: 16) {
                         Text("Photos")
@@ -51,7 +52,7 @@ struct AddView: View {
                             .padding(.top, 4)
                     }
                     .padding(.horizontal)
-
+                    
                     VStack(spacing: 20) {
                         NavigationLink(destination: OfferFormView(isOffer: true, selectedImages: selectedImages), isActive: $isOffer) {
                             Button(action: {

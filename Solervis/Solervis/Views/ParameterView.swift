@@ -27,6 +27,7 @@ struct SettingsButton: View {
 
 struct ParameterView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.navigateBack) var navigateBack
     @EnvironmentObject var userSettings: UserSettings
     
     var body: some View {
@@ -34,7 +35,11 @@ struct ParameterView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss()
+                        if let navigateBack = navigateBack {
+                            navigateBack()
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }) {
                         Image(systemName: "chevron.left")
                             .font(.title)
@@ -133,7 +138,11 @@ struct ParameterView: View {
         .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))
         .gesture(DragGesture().onEnded { value in
             if value.translation.width > 100 {
-                presentationMode.wrappedValue.dismiss()
+                if let navigateBack = navigateBack {
+                    navigateBack()
+                } else {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         })
         .navigationBarHidden(true)
@@ -141,11 +150,11 @@ struct ParameterView: View {
     }
     
     func handleLogoutAndNavigate() {
-            userSettings.logout()
-            presentationMode.wrappedValue.dismiss()
-            
-            // Redirection vers l'écran de connexion ou d'accueil
-        }
+        userSettings.logout()
+        presentationMode.wrappedValue.dismiss()
+        
+        // Redirection vers l'écran de connexion ou d'accueil
+    }
 }
 
 struct ParametreScreen_Previews: PreviewProvider {

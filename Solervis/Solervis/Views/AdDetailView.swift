@@ -3,7 +3,8 @@ import SwiftUI
 struct AdDetailView: View {
     let item: CardData
     @Environment(\.presentationMode) var presentationMode
-
+    @Environment(\.navigateBack) var navigateBack
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -20,41 +21,45 @@ struct AdDetailView: View {
                     }
                     .tabViewStyle(PageTabViewStyle())
                     .frame(height: 300)
-
+                    
                     HStack {
-                                            Button(action: {
-                                                presentationMode.wrappedValue.dismiss()
-                                            }) {
-                                                Image(systemName: "xmark.circle")
-                                                    .resizable()
-                                                    .frame(width: 25, height: 25)
-                                                    .foregroundColor(.black)
-                                                    .background(Circle().fill(Color.white).frame(width: 40, height: 40))
-                                            }
-                                            .padding()
-
-                                            Spacer()
-
-                                            Button(action: {
-                                                // Action de partage
-                                                shareAd()
-                                            }) {
-                                                Image(systemName: "square.and.arrow.up")
-                                                    .resizable()
-                                                    .frame(width: 20, height: 20)
-                                                    .foregroundColor(.black)
-                                                    .background(Circle().fill(Color.white).frame(width: 40, height: 40))
-                                            }
-                                            .padding()
-                                        }
+                        Button(action: {
+                            if let navigateBack = navigateBack {
+                                navigateBack()
+                            } else {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }) {
+                            Image(systemName: "xmark.circle")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundColor(.black)
+                                .background(Circle().fill(Color.white).frame(width: 40, height: 40))
+                        }
+                        .padding()
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            // Action de partage
+                            shareAd()
+                        }) {
+                            Image(systemName: "square.and.arrow.up")
+                                .resizable()
+                                .frame(width: 20, height: 20)
+                                .foregroundColor(.black)
+                                .background(Circle().fill(Color.white).frame(width: 40, height: 40))
+                        }
+                        .padding()
+                    }
                 }
-
+                
                 VStack(alignment: .leading, spacing: 16) {
                     // Title and location
                     Text(item.title)
                         .font(.title)
                         .bold()
-
+                    
                     HStack {
                         Image(systemName: "location.fill")
                             .foregroundColor(.gray)
@@ -62,11 +67,11 @@ struct AdDetailView: View {
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
-
+                    
                     // Description
                     Text(item.data.adDescription)
                         .font(.body)
-
+                    
                     // Price and buy button
                     HStack {
                         HStack {
@@ -78,9 +83,9 @@ struct AdDetailView: View {
                                 .scaledToFit()
                                 .frame(width: 30, height: 30)
                         }
-
+                        
                         Spacer()
-
+                        
                         Button(action: {
                             // Action d'achat
                         }) {
@@ -92,9 +97,9 @@ struct AdDetailView: View {
                                 .cornerRadius(10)
                         }
                     }
-
+                    
                     Divider()
-
+                    
                     // Profile section
                     HStack {
                         if let url = URL(string: "https://solervis.fr/file/getFileBinary?path=\(item.userImageURL)") {
@@ -102,11 +107,11 @@ struct AdDetailView: View {
                                 .frame(width: 50, height: 50)
                                 .clipShape(Circle())
                         }
-
+                        
                         VStack(alignment: .leading) {
                             Text(item.userName)
                                 .font(.headline)
-
+                            
                             HStack {
                                 ForEach(0..<5) { star in
                                     Image(systemName: star < Int(item.rating) ? "star.fill" : "star")
@@ -114,9 +119,9 @@ struct AdDetailView: View {
                                 }
                             }
                         }
-
+                        
                         Spacer()
-
+                        
                         Button(action: {
                             // Action de contact
                         }) {
@@ -134,12 +139,16 @@ struct AdDetailView: View {
         }
         .gesture(DragGesture().onEnded { value in
             if value.translation.width > 100 {
-                presentationMode.wrappedValue.dismiss()
+                if let navigateBack = navigateBack {
+                    navigateBack()
+                } else {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         })
         .navigationBarHidden(true)
     }
-
+    
     func shareAd() {
         guard let url = URL(string: "https://solervis.fr/ad/\(item.id)") else { return }
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    let navigateTo: (AnyView, Bool) -> Void
     @State private var searchText: String = ""
     @State private var selectedCategory: String?
     @State private var selectedSegment: String = "Offres"
@@ -75,7 +76,9 @@ struct HomeView: View {
                         if selectedCategory == nil {
                             if selectedSegment == "Offres" {
                                 ForEach(offers) { offer in
-                                    NavigationLink(destination: AdDetailView(item: offer)) {
+                                    Button(action: {
+                                        navigateTo(AnyView(AdDetailView(item: offer)), true)
+                                    }) {
                                         CardView(
                                             imageURL: offer.imageURL,
                                             title: offer.title,
@@ -93,7 +96,9 @@ struct HomeView: View {
                                 }
                             } else {
                                 ForEach(requests) { request in
-                                    NavigationLink(destination: AdDetailView(item: request)) {
+                                    Button(action: {
+                                        navigateTo(AnyView(AdDetailView(item: request)), true)
+                                    }) {
                                         CardView(
                                             imageURL: request.imageURL,
                                             title: request.title,
@@ -112,7 +117,9 @@ struct HomeView: View {
                             }
                         } else {
                             ForEach(ads) { ad in
-                                NavigationLink(destination: AdDetailView(item: ad)) {
+                                Button(action: {
+                                    navigateTo(AnyView(AdDetailView(item: ad)), true)
+                                }) {
                                     CardView(
                                         imageURL: ad.imageURL,
                                         title: ad.title,
@@ -179,11 +186,5 @@ struct HomeView: View {
                 print("Failed to decode JSON: \(error)")
             }
         }.resume()
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
     }
 }

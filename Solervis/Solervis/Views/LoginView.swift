@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct LoginView: View {
+    let navigateTo: (AnyView, Bool) -> Void
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var errorMessage: String?
     @EnvironmentObject var userSettings: UserSettings
-
+    
     var body: some View {
         VStack {
             Spacer()
@@ -111,7 +112,7 @@ struct LoginView: View {
             }
         }.resume()
     }
-
+    
     func checkIfLoggedIn() {
         if let token = UserDefaults.standard.string(forKey: "token") {
             refreshAuthToken(token: token)
@@ -151,12 +152,5 @@ struct LoginView: View {
                 }
             }
         }.resume()
-    }
-}
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-            .environmentObject(UserSettings())
     }
 }

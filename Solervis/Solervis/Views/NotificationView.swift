@@ -2,14 +2,19 @@ import SwiftUI
 
 struct NotificationView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.navigateBack) var navigateBack
     @State private var notifications: [NotificationData] = []
     @State private var errorMessage: String? = nil
-
+    
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()
+                    if let navigateBack = navigateBack {
+                        navigateBack()
+                    } else {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }) {
                     Image(systemName: "chevron.left")
                         .font(.largeTitle)
@@ -25,7 +30,7 @@ struct NotificationView: View {
                     .foregroundColor(.clear)
             }
             .padding()
-
+            
             ScrollView {
                 VStack(spacing: 0) {
                     if notifications.isEmpty {
@@ -44,7 +49,11 @@ struct NotificationView: View {
         }
         .gesture(DragGesture().onEnded { value in
             if value.translation.width > 100 {
-                presentationMode.wrappedValue.dismiss()
+                if let navigateBack = navigateBack {
+                    navigateBack()
+                } else {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         })
         .navigationBarHidden(true)
@@ -157,7 +166,7 @@ struct NotificationRow: View {
         let minutes = Int(diff / 60)
         let hours = Int(diff / 3600)
         let days = Int(diff / 86400)
-
+        
         if minutes < 60 {
             return "\(minutes) min"
         } else if hours < 24 {

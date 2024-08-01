@@ -2,14 +2,19 @@ import SwiftUI
 
 struct FavoritesView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.navigateBack) var navigateBack
     @State private var favorites: [CardData] = []
     @State private var errorMessage: String? = nil
-
+    
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss()
+                    if let navigateBack = navigateBack {
+                        navigateBack()
+                    } else {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }) {
                     Image(systemName: "chevron.left")
                         .font(.largeTitle)
@@ -25,7 +30,7 @@ struct FavoritesView: View {
                     .foregroundColor(.clear)
             }
             .padding()
-
+            
             ScrollView {
                 VStack(spacing: 0) {
                     if favorites.isEmpty {
@@ -54,7 +59,11 @@ struct FavoritesView: View {
         }
         .gesture(DragGesture().onEnded { value in
             if value.translation.width > 100 {
-                presentationMode.wrappedValue.dismiss()
+                if let navigateBack = navigateBack {
+                    navigateBack()
+                } else {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         })
         .navigationBarHidden(true)

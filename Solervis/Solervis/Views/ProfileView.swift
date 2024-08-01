@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    let navigateTo: (AnyView, Bool) -> Void
     @State private var userId: String = UserDefaults.standard.string(forKey: "userId") ?? ""
     @State private var profile: UserProfile? = nil
     @State private var errorMessage: String? = nil
@@ -8,7 +9,7 @@ struct ProfileView: View {
     @State private var showFavorites: Bool = false
     @State private var showNotifications: Bool = false
     @State private var showParameters: Bool = false
-
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -33,32 +34,28 @@ struct ProfileView: View {
                             Spacer()
                             
                             HStack(spacing: 16) {
-                                NavigationLink(destination: NotificationView(), isActive: $showNotifications) {
-                                    EmptyView()
-                                }
                                 Button(action: {
-                                    showNotifications = true
+                                    let notificationView = NotificationView()
+                                    navigateTo(AnyView(notificationView), true)
+                                    
                                 }) {
                                     Image("notification_icon") // Assurez-vous que l'icône est ajoutée aux assets
                                         .resizable()
                                         .frame(width: 24, height: 24)
                                 }
                                 
-                                NavigationLink(destination: FavoritesView(), isActive: $showFavorites) {
-                                    EmptyView()
-                                }
                                 Button(action: {
-                                    showFavorites = true
+                                    let favoritesView = FavoritesView();
+                                    navigateTo(AnyView(favoritesView), true)
                                 }) {
                                     Image("favorite_icon") // Assurez-vous que l'icône est ajoutée aux assets
                                         .resizable()
                                         .frame(width: 24, height: 24)
                                 }
-                                NavigationLink(destination: ParameterView(), isActive: $showParameters) {
-                                    EmptyView()
-                                }
+                                
                                 Button(action: {
-                                    showParameters = true
+                                    let parameterView = ParameterView()
+                                    navigateTo(AnyView(parameterView), true)
                                 }) {
                                     Image("settings_icon") // Assurez-vous que l'icône est ajoutée aux assets
                                         .resizable()
@@ -303,11 +300,5 @@ struct SectionHeader: View {
             .padding(2)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color(UIColor.systemGray6))
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
     }
 }
